@@ -39,7 +39,7 @@
                         "secondary-fixed": "#ffdad4",
                         "on-surface": "#291714",
                         "inverse-primary": "#ffb4a7",
-                        "surface-bright": "#fff8f6",
+                        "surface-bright": "#ffffff",
                         "on-primary": "#ffffff",
                         "primary": "#b90f00",
                         "surface-tint": "#be1000",
@@ -55,7 +55,7 @@
                         "tertiary-fixed-dim": "#abc7ff",
                         "on-error": "#ffffff",
                         "inverse-on-surface": "#ffede9",
-                        "surface": "#fff8f6",
+                        "surface": "#ffffff",
                         "on-primary-fixed": "#400200",
                         "on-primary-container": "#fffbff",
                         "on-error-container": "#93000a",
@@ -69,7 +69,7 @@
                         "surface-dim": "#f4d3cc",
                         "secondary": "#ac3322",
                         "tertiary": "#005cba",
-                        "background": "#fff8f6",
+                        "background": "#ffffff",
                         "primary-fixed-dim": "#ffb4a7"
                     },
                     "borderRadius": {
@@ -112,67 +112,69 @@
     </script>
 </head>
 <body class="bg-background text-on-background font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar -->
 <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-gray-100 dark:border-gray-800 shadow-[0_4px_20px_rgba(140,113,108,0.08)] font-['Plus_Jakarta_SANS'] antialiased">
-<div class="flex justify-between items-center px-8 py-4 max-w-[1200px] mx-auto">
-<!-- Brand -->
-<a class="text-2xl font-black tracking-tighter text-red-600 dark:text-red-500 hover:opacity-80 transition-opacity" href="#">
+    <div class="flex items-center px-8 py-4 max-w-[1200px] mx-auto">
+        
+        <div class="flex-1 flex justify-start">
+            <a class="text-2xl font-black tracking-tighter text-red-600 dark:text-red-500 hover:opacity-80 transition-opacity" href="#">
                 MabarYuk
             </a>
-<!-- Navigation Links (Desktop) -->
-<nav class="hidden md:flex items-center gap-8">
-<!-- Active Item -->
-<a class="text-red-600 dark:text-red-400 font-bold border-b-2 border-red-600 pb-1 hover:text-red-500 dark:hover:text-red-300 transition-colors duration-300 active:scale-95 transition-all duration-200" href="#">
-                    Home
+        </div>
+
+        <nav class="hidden md:flex flex-1 justify-center items-center gap-8">
+            <a class="text-red-600 dark:text-red-400 font-bold border-b-2 border-red-600 pb-1 hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95" href="#">
+                Home
+            </a>
+            <a class="text-gray-600 dark:text-gray-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95" href="#">
+                Explore
+            </a>
+        </nav>
+
+        <div class="flex flex-1 justify-end items-center gap-6">
+            <div class="flex items-center gap-4 text-red-600 dark:text-red-500">
+                <button aria-label="shopping_cart" class="hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95">
+                    <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+                </button>
+                <button aria-label="language" class="hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95">
+                    <span class="material-symbols-outlined text-[24px]">language</span>
+                </button>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <a class="text-gray-600 dark:text-gray-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95" href="#">
+                    Login
                 </a>
-<!-- Inactive Item -->
-<a class="text-gray-600 dark:text-gray-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-300 active:scale-95 transition-all duration-200" href="#">
-                    Explore
+                <a class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-tint transition-all duration-200 active:scale-95 shadow-[0_4px_20px_rgba(140,113,108,0.08)]" href="#">
+                    Sign Up
                 </a>
-</nav>
-<!-- Actions -->
-<div class="flex items-center gap-6">
-<!-- Icon Actions -->
-<div class="flex items-center gap-4 text-red-600 dark:text-red-500">
-<button aria-label="shopping_cart" class="hover:text-red-500 dark:hover:text-red-300 transition-colors duration-300 active:scale-95 transition-all duration-200">
-<span class="material-symbols-outlined text-[24px]">shopping_cart</span>
-</button>
-<button aria-label="language" class="hover:text-red-500 dark:hover:text-red-300 transition-colors duration-300 active:scale-95 transition-all duration-200">
-<span class="material-symbols-outlined text-[24px]">language</span>
-</button>
-</div>
-<!-- Primary/Secondary Actions (Desktop) -->
-<div class="hidden md:flex items-center gap-4">
-<a class="text-gray-600 dark:text-gray-400 font-medium hover:text-red-500 dark:hover:text-red-300 transition-colors duration-300 active:scale-95 transition-all duration-200" href="#">
-                        Login
-                    </a>
-<a class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg text-label-lg hover:bg-surface-tint transition-colors active:scale-95 duration-200 shadow-[0_4px_20px_rgba(140,113,108,0.08)]" href="#">
-                        Sign Up
-                    </a>
-</div>
-<!-- Mobile Menu Toggle -->
-<button class="md:hidden text-red-600 dark:text-red-500">
-<span class="material-symbols-outlined text-[28px]">menu</span>
-</button>
-</div>
-</div>
+            </div>
+            <button class="md:hidden text-red-600 dark:text-red-500 transition-all duration-200 active:scale-95">
+                <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
+        </div>
+
+    </div>
 </header>
 <!-- Main Content Canvas -->
 <main>
 <!-- Hero Section -->
 <section class="relative pt-xl pb-xl px-gutter overflow-hidden bg-surface-container-lowest">
-<!-- Subtle background accent blob -->
-<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-container rounded-full blur-[120px] opacity-[0.03] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
-<div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center relative z-10">
-<!-- Text Content -->
-<div class="flex flex-col gap-lg z-10">
-<h1 class="font-display-lg text-display-lg text-on-background text-balance">
-                        Your daily favorite meals, delivered fast.
+<div class="absolute inset-0 bg-black z-0 pointer-events-none"></div>
+<div class="absolute inset-0 pointer-events-none opacity-[0.65] z-0 overflow-hidden blur-[2px]">
+<img 
+        src="data\aldino-hartan-putra-idveVMe3GGg-unsplash.jpg" 
+        alt="Hero Background" 
+        class="w-full h-full object-cover scale-110"
+    />
+</div>
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-container rounded-full blur-[120px] opacity-[0.03] -translate-y-1/2 translate-x-1/4 pointer-events-none z-0"></div>
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 items-center relative z-10 w-full">
+<div class="flex flex-col gap-lg z-10 justify-center text-center items-center lg:col-span-2 mx-auto w-full">
+<h1 class="font-display-lg text-display-lg text-on-secondary text-balance">
+                        Ready for your meal?
                     </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[500px]">
-                        Always reliable, just for you, straight to your door without any extra hassle. Experience culinary zen today.
+<p class="font-body-lg text-body-lg text-on-secondary max-w-[500px]">
+                        Choose what you want to eat. Set your delivery location. Enjoy restaurant quality at home.
                     </p>
-<!-- Search/Action Botoom -->
 <div class="flex flex-col sm:flex-row gap-base mt-base w-full max-w-[600px] bg-surface rounded-full p-base shadow-[0_12px_32px_rgba(140,113,108,0.04)] border border-outline-variant/30 backdrop-blur-sm">
 <div class="flex-1 flex items-center gap-sm px-md py-sm bg-transparent">
 <span class="material-symbols-outlined text-on-surface-variant">location_on</span>
@@ -183,20 +185,7 @@
                         </button>
 </div>
 </div>
-<!-- Hero Image (Organic Modernism style) -->
-<div class="relative h-[500px] w-full rounded-[40px] overflow-hidden shadow-[0_24px_48px_rgba(140,113,108,0.12)] border border-surface-container-high transform rotate-1 hover:rotate-0 transition-transform duration-700 ease-out">
-<img alt="Fresh healthy meal" class="w-full h-full object-cover" data-alt="Overhead view of a vibrant, healthy grain bowl with fresh avocado, leafy greens, and roasted vegetables on a light minimalist table setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBwCWRwW_04LAjUWnkcwxyITwe6MQ2f-ho8FBHnl9ffOsHyV01ITkaEAKYpMn6_lIWrbAekfC5gaDCD-yEDQ5CFKok0B08bmeKd2bbqY9gx6f8mZJ9FdGbiDiHBcy9BaL0T3XDb9keMaAut2aqK_aGVET20PyYI2iPj9gPIARaOfrQoI7C0nBZCz-l91mgePlgtUX1PdQWaoVbSbVa03ug1p1LpaOQUpjCxp4-L4ioBW21u1POtdMyLJxT8mpWsyiP9kqbTfG-hHw"/>
-<!-- Floating Badge -->
-<div class="absolute bottom-lg left-lg bg-surface-container-lowest/90 backdrop-blur-md rounded-2xl p-sm flex items-center gap-sm shadow-[0_12px_32px_rgba(140,113,108,0.12)] border border-white/50">
-<div class="bg-secondary-container text-on-primary rounded-full p-xs">
-<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
-</div>
-<div>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Trending</p>
-<p class="font-label-lg text-label-lg text-on-surface">Fresh Poke Bowl</p>
-</div>
-</div>
-</div>
+
 </div>
 </section>
 <!-- What are you craving? Section -->
