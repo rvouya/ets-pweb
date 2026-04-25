@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile Offcanvas - MABARYUK</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#5f4100",
+                    "on-surface": "#251915",
+                    "secondary-container": "#fdbf50",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#53d9d8",
+                    "primary-fixed-dim": "#ffb5a1",
+                    "on-secondary-container": "#714e00",
+                    "on-secondary-fixed": "#281900",
+                    "outline": "#8c716a",
+                    "on-primary-fixed": "#3c0800",
+                    "on-tertiary-fixed-variant": "#00504f",
+                    "tertiary-fixed": "#74f6f5",
+                    "tertiary-container": "#00afae",
+                    "surface-container-low": "#fff1ed",
+                    "secondary-fixed": "#ffdeac",
+                    "on-primary-fixed-variant": "#881f00",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#006a69",
+                    "background": "#fff8f6",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f6",
+                    "on-tertiary-container": "#003b3b",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#3b2d29",
+                    "on-tertiary-fixed": "#002020",
+                    "surface-container-highest": "#f5ddd8",
+                    "surface-container-high": "#fbe3dd",
+                    "on-surface-variant": "#58413b",
+                    "surface": "#fff8f6",
+                    "primary": "#ab3514",
+                    "inverse-on-surface": "#ffede9",
+                    "on-primary-container": "#681600",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#e0bfb7",
+                    "inverse-primary": "#ffb5a1",
+                    "surface-dim": "#edd5cf",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#f5ddd8",
+                    "primary-fixed": "#ffdbd1",
+                    "on-background": "#251915",
+                    "secondary-fixed-dim": "#f9bc4d",
+                    "error": "#ba1a1a",
+                    "primary-container": "#ff724c",
+                    "surface-container": "#ffe9e4",
+                    "surface-tint": "#ab3514",
+                    "secondary": "#7e5700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "margin": "20px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "md": "16px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "h3": ["Plus Jakarta Sans"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "h2": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "price": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                    "h1": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                    "label-bold": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "700"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "price": ["18px", {"lineHeight": "1", "fontWeight": "800"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background min-h-screen antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Screen Overlay (simulating background content) -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-40 transition-opacity"></div>
+<!-- Offcanvas Container -->
+<aside class="fixed top-0 left-0 h-full w-[85%] max-w-[400px] bg-surface-container-lowest z-50 shadow-[4px_0_24px_rgba(0,0,0,0.12)] flex flex-col transition-transform duration-300 ease-out translate-x-0 rounded-r-2xl sm:rounded-none">
+<!-- Header Section -->
+<header class="p-lg flex items-center justify-between">
+<div class="flex items-center gap-md">
+<!-- Profile Initials Circle -->
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-h2 text-h2 shadow-sm shrink-0">
+                    AB
+                </div>
+<!-- User Info -->
+<div class="flex flex-col">
+<h2 class="font-h3 text-h3 text-on-surface">Ahmad Budi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">+62 812 3456 7890</p>
+</div>
+</div>
+<!-- Close Button (UX addition) -->
+<button aria-label="Tutup" class="p-xs rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors self-start mt-xs">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Wallet / GoPay Row -->
+<div class="px-lg pb-md">
+<div class="bg-surface-container rounded-xl p-md flex items-center justify-between shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-outline-variant/20 hover:scale-[1.02] transition-transform duration-200">
+<div class="flex items-center gap-sm">
+<!-- Wallet Icon Badge (Using Tertiary for Green-ish tone as per theme constraints) -->
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold text-on-surface-variant">GoPay</span>
+<span class="font-price text-price text-on-surface">Rp 250.000</span>
+</div>
+</div>
+<!-- Top Up Button -->
+<button class="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-sm py-xs rounded-full hover:bg-secondary-fixed-dim hover:scale-105 transition-all active:scale-95 shadow-sm">
+                    Top Up
+                </button>
+</div>
+</div>
+<!-- Navigation List -->
+<nav class="flex-1 overflow-y-auto px-md py-sm flex flex-col gap-xs scrollbar-hide">
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">receipt_long</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Riwayat Pesanan</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">favorite</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Restoran Favorit</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">location_on</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Alamat Tersimpan</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">payment</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Metode Pembayaran</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">local_activity</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Promo &amp; Voucher</span>
+<!-- Optional: Promo Chip -->
+<span class="bg-primary-container/20 text-primary font-label-bold text-label-bold px-2 py-1 rounded-full">3 Baru</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+<div class="h-px bg-outline-variant/30 my-xs mx-md"></div>
+<a class="flex items-center gap-md p-md rounded-xl hover:bg-surface-variant transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">settings</span>
+<span class="font-body-lg text-body-lg text-on-surface group-hover:text-primary transition-colors flex-1">Pengaturan</span>
+<span class="material-symbols-outlined text-outline-variant opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</a>
+</nav>
+<!-- Bottom Action: Keluar -->
+<div class="p-lg mt-auto border-t border-outline-variant/20 bg-surface-container-lowest">
+<button class="w-full flex items-center justify-center gap-sm p-md rounded-xl hover:bg-error-container text-error transition-all group hover:scale-[1.02] active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">logout</span>
+<span class="font-h3 text-h3">Keluar</span>
+</button>
+</div>
+</aside>
+</body></html>
