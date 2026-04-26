@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>MABARYUK - Makan Bareng, Jadi Lebih Seru!</title>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  
+    <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/style.css" rel="stylesheet" />
+  
+  <link href="../styles/landing-page.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="top-header">
+    <div class="container-xl d-flex justify-content-between align-items-center py-3">
+      
+      <div class="brand-logo">MABARYUK</div>
+      
+            <div class="flex-grow-1 mx-3 mx-md-5 position-relative d-none d-md-block" id="search-wrapper">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input id="search-input" class="search-box w-100" placeholder="Cari restoran atau makanan..." type="text" autocomplete="off" />
+        
+        <div id="search-dropdown" class="search-dropdown">
+          <div class="p-4 p-md-5 d-flex flex-column gap-4">
+            
+            <section class="d-flex flex-column gap-3">
+              <h2 class="fs-5 fw-bold d-flex align-items-center gap-2 m-0">
+                <span class="material-symbols-outlined" style="color: var(--primary-container);">history</span>
+                Pencarian Terakhir
+              </h2>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="pill-btn">Bakso Pak Min</button>
+                <button class="pill-btn">Nasi Padang</button>
+                <button class="pill-btn">Es Teh Jumbo</button>
+              </div>
+            </section>
+            
+            <section class="d-flex flex-column gap-3">
+              <h2 class="fs-5 fw-bold d-flex align-items-center gap-2 m-0">
+                <span class="material-symbols-outlined" style="color: var(--secondary-container);">local_fire_department</span>
+                Kategori Populer
+              </h2>
+              <div class="row g-2">
+                <div class="col-6"><div class="cat-btn"><div class="cat-icon">🍛</div><span class="fw-semibold text-dark">Nasi</span></div></div>
+                <div class="col-6"><div class="cat-btn"><div class="cat-icon">🍜</div><span class="fw-semibold text-dark">Mie & Bakso</span></div></div>
+                <div class="col-6"><div class="cat-btn"><div class="cat-icon">🍗</div><span class="fw-semibold text-dark">Ayam</span></div></div>
+                <div class="col-6"><div class="cat-btn"><div class="cat-icon">🥤</div><span class="fw-semibold text-dark">Minuman</span></div></div>
+              </div>
+            </section>
+            
+            <section class="d-flex flex-column gap-3">
+              <h2 class="fs-5 fw-bold m-0">Rekomendasi Cepat</h2>
+              <div class="d-flex flex-column gap-2">
+                <div class="rec-item">
+                  <img alt="Nasi Goreng Spesial" class="rounded-3 object-fit-cover" style="width: 48px; height: 48px;" src="https://www.caramelandspice.com/wp-content/uploads/2022/05/072-Nasi-Goreng-Kampung-Indonesian-Fried-Rice-1-of-1.jpg" />
+                  <div>
+                    <h3 class="fs-6 fw-bold m-0 text-dark">Nasi Goreng Gila</h3>
+                    <p class="m-0 text-secondary" style="font-size: 12px;"><span class="material-symbols-outlined align-middle" style="font-size: 14px; color: var(--secondary-container);">star</span> 4.8 • 1.2 km</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            
+          </div>
+        </div>
+      </div>
+      
+            <div class="d-flex align-items-center gap-3">
+        <button id="profile-trigger" class="btn btn-link text-dark p-0 d-none" aria-label="Buka profil">
+          <span class="material-symbols-outlined fs-3">account_circle</span>
+        </button>
+        <button id="auth-btn" class="auth-btn d-none d-md-block" type="button" onclick="window.location.href='login.html'">Login/Sign Up</button>
+        <button class="btn btn-link text-danger p-0 d-md-none">
+          <span class="material-symbols-outlined fs-2">menu</span>
+        </button>
+      </div>
+      
+    </div>
+  </header>
+
+  <main class="container-xl mx-auto px-3 pb-5">
+    
+        <section class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-img"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Lapar? Yuk, Pesen Sekarang!</h1>
+        <p class="text-white opacity-75 fs-5 mb-4">Dari warung langganan sampai resto hits, semua ada di sini.</p>
+        <div class="hero-input-group">
+          <span class="material-symbols-outlined px-3" style="color: var(--primary-container);">location_on</span>
+          <input class="hero-input" placeholder="Masukkan alamat pengirimanmu..." type="text" />
+          <button class="hero-search-btn">Cari Makanan</button>
+        </div>
+      </div>
+    </section>
+
+        <section class="mt-5">
+      <h2 class="fs-3 fw-bold mb-4">Promo Hari Ini</h2>
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="promo-card" style="background: linear-gradient(135deg, #ff724c, #ab3514);">
+            <div class="glow"></div>
+            <div class="promo-badge">S/D 50%</div>
+            <h3 class="fs-4 fw-bold mb-1">Pesta Gajian</h3>
+            <p class="mb-0 opacity-75 small">Berlaku untuk semua menu</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="promo-card" style="background: linear-gradient(135deg, #fdbf50, #7e5700);">
+            <div class="glow"></div>
+            <div class="promo-badge">GRATIS 🛵</div>
+            <h3 class="fs-4 fw-bold mb-1">Ongkir 0 Rupiah</h3>
+            <p class="mb-0 opacity-75 small">Minimal belanja Rp40.000</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="promo-card" style="background: linear-gradient(135deg, #00afae, #006a69);">
+            <div class="glow"></div>
+            <div class="promo-badge">BOGO</div>
+            <h3 class="fs-4 fw-bold mb-1">Buy 1 Get 1</h3>
+            <p class="mb-0 opacity-75 small">Khusus Kopi &amp; Minuman</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="promo-card" style="background: linear-gradient(135deg, #ef4444, #ec4899);">
+            <div class="glow"></div>
+            <div class="promo-badge">Group Order</div>
+            <h3 class="fs-4 fw-bold mb-1">Many Yassy</h3>
+            <p class="mb-0 opacity-75 small">Minimal belanja Rp 150.000</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="mt-5">
+      <div class="d-flex overflow-x-auto gap-3 py-3" style="scrollbar-width: none;">
+        <button data-filter="all" class="filter-btn filter-btn-active">Semua</button>
+        <button data-filter="nasi" class="filter-btn filter-btn-inactive">Nasi</button>
+        <button data-filter="mie_bakso" class="filter-btn filter-btn-inactive">Mie &amp; Bakso</button>
+        <button data-filter="ayam" class="filter-btn filter-btn-inactive">Ayam</button>
+        <button data-filter="seafood" class="filter-btn filter-btn-inactive">Seafood</button>
+        <button data-filter="minuman" class="filter-btn filter-btn-inactive">Minuman</button>
+        <button data-filter="dessert" class="filter-btn filter-btn-inactive">Dessert</button>
+      </div>
+    </section>
+
+        <section class="mt-5">
+      <h2 class="fs-3 fw-bold mb-4">Populer di Sekitarmu</h2>
+      <div class="row g-4" id="menu-cards-container">
+        
+        <div class="col-12 col-md-6 col-lg-4 menu-card-item" data-category="nasi">
+          <div class="food-card" onclick="window.location.href='restaurant.html'">
+            <div class="food-card-img">
+              <img alt="Nasi Goreng" src="https://www.caramelandspice.com/wp-content/uploads/2022/05/072-Nasi-Goreng-Kampung-Indonesian-Fried-Rice-1-of-1.jpg" />
+              <div class="rating-badge"><span class="material-symbols-outlined" style="color: var(--secondary-container); font-size: 18px;">star</span> <b>4.8</b></div>
+            </div>
+            <div class="p-4">
+              <h3 class="fs-5 fw-bold mb-1">Nasi Goreng Gila Mpok Mumun</h3>
+              <p class="text-secondary small mb-3">Nasi Goreng, Indonesian</p>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">two_wheeler</span>25 min</div>
+                <div style="width:4px; height:4px; background:#ccc; border-radius:50%;"></div>
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">attach_money</span>Rp 10.000</div>
+              </div>
+              <div class="d-flex gap-2">
+                <span class="tag-badge">Promo</span>
+                <span class="tag-badge-outline">Porsi Besar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 menu-card-item" data-category="mie_bakso">
+          <div class="food-card" onclick="window.location.href='restaurant.html'">
+            <div class="food-card-img">
+              <img alt="Mie Ayam" src="https://images.bisnis.com/posts/2023/08/22/1687037/bakmi_gm_1692680061.jpg" />
+              <div class="rating-badge"><span class="material-symbols-outlined" style="color: var(--secondary-container); font-size: 18px;">star</span> <b>4.6</b></div>
+            </div>
+            <div class="p-4">
+              <h3 class="fs-5 fw-bold mb-1">Bakmi Soerja</h3>
+              <p class="text-secondary small mb-3">Noodles, Chinese Indonesian</p>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">two_wheeler</span>15 min</div>
+                <div style="width:4px; height:4px; background:#ccc; border-radius:50%;"></div>
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">attach_money</span>Rp 8.000</div>
+              </div>
+              <div class="d-flex gap-2">
+                <span class="tag-badge-outline">Terdongkrak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 menu-card-item" data-category="minuman">
+          <div class="food-card" onclick="window.location.href='restaurant.html'">
+            <div class="food-card-img">
+              <img alt="Es Kopi" src="https://www.kokako.co.nz/cdn/shop/files/KC_ColdCup_Clear_AW_Sep202327.jpg?v=1707442592" />
+              <div class="rating-badge"><span class="material-symbols-outlined" style="color: var(--secondary-container); font-size: 18px;">star</span> <b>4.9</b></div>
+            </div>
+            <div class="p-4">
+              <h3 class="fs-5 fw-bold mb-1">Kopi Janji Manis</h3>
+              <p class="text-secondary small mb-3">Beverages, Coffee</p>
+              <div class="d-flex align-items-center gap-3 text-secondary small mb-3">
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">two_wheeler</span>10 min</div>
+                <div style="width:4px; height:4px; background:#ccc; border-radius:50%;"></div>
+                <div class="d-flex align-items-center gap-1"><span class="material-symbols-outlined fs-6">attach_money</span>Rp 5.000</div>
+              </div>
+              <div class="d-flex gap-2">
+                <span class="tag-badge">Buy 1 Get 1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+        <section class="mt-5 pt-4">
+      <h2 class="fs-3 fw-bold mb-4">Frequently Asked Questions</h2>
+      <div id="faq-container">
+        
+        <div class="faq-item">
+          <button class="faq-header faq-button">
+            <h3>Berapa biaya pengirimannya?</h3>
+            <span class="material-symbols-outlined faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content">
+            <div class="p-3 pt-0 text-secondary border-top mx-3 mt-1">
+              Biaya pengiriman dihitung secara otomatis berdasarkan jarak dari restoran ke lokasi Anda. Terdapat juga promo gratis ongkos kirim untuk pemesanan dengan minimal belanja Rp 40.000.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header faq-button">
+            <h3>Bisakah saya menjadwalkan pesanan untuk nanti?</h3>
+            <span class="material-symbols-outlined faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content">
+            <div class="p-3 pt-0 text-secondary border-top mx-3 mt-1">
+              Ya, Anda bisa mengatur jadwal pesanan Anda. Sistem kami memungkinkan Anda untuk memilih waktu pengiriman yang spesifik hingga 24 jam ke depan agar makanan tiba tepat saat Anda membutuhkannya.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-header faq-button">
+            <h3>Metode pembayaran apa saja yang diterima?</h3>
+            <span class="material-symbols-outlined faq-icon">expand_more</span>
+          </button>
+          <div class="faq-content">
+            <div class="p-3 pt-0 text-secondary border-top mx-3 mt-1">
+              Kami menyediakan berbagai pilihan metode pembayaran yang aman, meliputi pembayaran dompet digital (GoPay, OVO, Dana), transfer antar bank, hingga pembayaran tunai di tempat (COD) saat makanan tiba.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+    <div id="profile-overlay" class="app-overlay d-none"></div>
+  <aside id="profile-drawer" class="profile-drawer">
+    <iframe id="profile-frame" src="about:blank" title="User profile"></iframe>
+  </aside>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+    <div class="container-xl d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+      <div class="text-center text-md-start">
+        <div class="fs-4 fw-bold mb-2">MABARYUK</div>
+        <p class="text-secondary small mb-0">© 2024 MABARYUK. Makan Bareng, Jadi Lebih Seru!</p>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <a class="text-secondary text-decoration-none" href="#">Tentang Kami</a>
+        <a class="text-secondary text-decoration-none" href="#">Pusat Bantuan</a>
+        <a class="text-secondary text-decoration-none" href="#">Mitra Restoran</a>
+        <a class="text-secondary text-decoration-none" href="#">Syarat &amp; Ketentuan</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/app-data.js"></script>
+  <script src="../scripts/landing.js"></script>
+  <script>
+    // Search dropdown interaction
+    document.getElementById('search-input')?.addEventListener('focus', function() {
+      document.getElementById('search-wrapper').classList.add('open');
+    });
+    
+    document.addEventListener('click', function(e) {
+      if (!document.getElementById('search-wrapper')?.contains(e.target)) {
+        document.getElementById('search-wrapper')?.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

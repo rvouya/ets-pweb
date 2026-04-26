@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>MABARYUK - Item Detail Modal</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  
+  <link href="../styles/style.css" rel="stylesheet" />
+  <link href="../styles/item-detail.css" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="modal-container">
+    
+    <button class="btn-close" id="close-btn" onclick="window.parent.postMessage({ type: 'close-item-detail' }, '*')">
+      <span class="material-symbols-outlined fs-5">close</span>
+    </button>
+    
+    <img id="detail-image" class="modal-hero" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc-4Ea0FrxVTBfcW6s0cbx3X8NvgeG9jlcuJ4BUMQXBGC7VuWDQVuApn3tFoAvlnnIu3TeZC9tXveG778MJEibgwMZ1A950vkUWZ2UZVOA9cH3BHOAfNzwkXFJrJEMNmHnFoM8xi6Qsgqh6Rui_3ajpelvGdXEGmJNNNTYxSCc44U4lUKMgAecC9JfX0rqev5p3zaKIQw-e2ZdiPtzEJRuE_0jPnThPIR0jxj09bw8CzZGC4F5NYG03atCoF2DJaj9ID2Cwxnfskg" alt="Food Image">
+    
+    <div class="modal-body hide-scrollbar">
+      <h1 id="detail-name" class="item-title">Ayam Bakar Bumbu Rujak</h1>
+      <p id="detail-desc" class="item-desc">Grilled chicken marinated in spicy and tangy traditional rujak spices. Served with fresh cucumber and sambal.</p>
+      <div id="detail-price" class="item-price">Rp 20.000</div>
+      
+      <hr class="my-4" style="border-color: var(--outline-variant); opacity: 0.3;" />
+      
+      <div class="section-title">
+        <span>Pilih Ukuran Porsi</span>
+        <span class="badge-required">WAJIB</span>
+      </div>
+      
+      <div class="option-list" id="portion-options">
+        <div class="option-card selected" data-price="0" onclick="selectOption(this, 'portion')">
+          <div class="option-info">
+            <span class="option-name">Reguler</span>
+            <span class="option-price">+ Rp 0</span>
+          </div>
+          <span class="material-symbols-outlined option-icon" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+        </div>
+        <div class="option-card" data-price="5000" onclick="selectOption(this, 'portion')">
+          <div class="option-info">
+            <span class="option-name">Large (Nasi Lebih Banyak)</span>
+            <span class="option-price">+ Rp 5.000</span>
+          </div>
+          <span class="material-symbols-outlined option-icon">radio_button_unchecked</span>
+        </div>
+      </div>
+      
+      <div class="section-title">
+        <span>Tambahan (Opsional)</span>
+        <span class="badge-optional">Pilih s.d 3</span>
+      </div>
+      
+      <div class="option-list" id="addon-options">
+        <div class="option-card" data-price="3000" onclick="toggleAddon(this)">
+          <div class="option-info">
+            <span class="option-name">Telur Ceplok</span>
+            <span class="option-price">+ Rp 3.000</span>
+          </div>
+          <span class="material-symbols-outlined option-icon">check_box_outline_blank</span>
+        </div>
+        <div class="option-card" data-price="2000" onclick="toggleAddon(this)">
+          <div class="option-info">
+            <span class="option-name">Ekstra Sambal Bawang</span>
+            <span class="option-price">+ Rp 2.000</span>
+          </div>
+          <span class="material-symbols-outlined option-icon">check_box_outline_blank</span>
+        </div>
+        <div class="option-card" data-price="2000" onclick="toggleAddon(this)">
+          <div class="option-info">
+            <span class="option-name">Kerupuk Udang</span>
+            <span class="option-price">+ Rp 2.000</span>
+          </div>
+          <span class="material-symbols-outlined option-icon">check_box_outline_blank</span>
+        </div>
+      </div>
+      
+      <div class="section-title mt-4">Catatan untuk Restoran (Opsional)</div>
+      <textarea class="notes-input" rows="3" placeholder="Contoh: Jangan pakai daun bawang, sambal dipisah ya..."></textarea>
+    </div>
+    
+    <div class="bottom-bar">
+      <div class="d-flex gap-3 w-100">
+        <div class="qty-control">
+          <button class="btn-qty" id="btn-minus" onclick="updateQty(-1)"><span class="material-symbols-outlined fs-5">remove</span></button>
+          <span class="qty-value" id="qty-val">1</span>
+          <button class="btn-qty" id="btn-plus" onclick="updateQty(1)"><span class="material-symbols-outlined fs-5">add</span></button>
+        </div>
+        
+        <button class="btn-primary" id="add-to-cart-btn">
+          <span>Tambah Pesanan</span>
+          <span id="btn-total-price">Rp 20.000</span>
+        </button>
+      </div>
+    </div>
+    
+  </div>
+
+  <script src="../scripts/app-data.js"></script>
+  <script src="../scripts/item-detail.js"></script>
+  <script>
+    let currentQty = 1;
+    let basePrice = 20000;
+    
+    function selectOption(element, group) {
+      const parent = element.parentElement;
+      const options = parent.querySelectorAll('.option-card');
+      options.forEach(opt => {
+        opt.classList.remove('selected');
+        const icon = opt.querySelector('.option-icon');
+        icon.textContent = 'radio_button_unchecked';
+        icon.style.fontVariationSettings = "'FILL' 0";
+      });
+      element.classList.add('selected');
+      const selectedIcon = element.querySelector('.option-icon');
+      selectedIcon.textContent = 'radio_button_checked';
+      selectedIcon.style.fontVariationSettings = "'FILL' 1";
+      updateTotalPrice();
+    }
+    
+    function toggleAddon(element) {
+      element.classList.toggle('selected');
+      const icon = element.querySelector('.option-icon');
+      if (element.classList.contains('selected')) {
+        icon.textContent = 'check_box';
+        icon.style.fontVariationSettings = "'FILL' 1";
+      } else {
+        icon.textContent = 'check_box_outline_blank';
+        icon.style.fontVariationSettings = "'FILL' 0";
+      }
+      updateTotalPrice();
+    }
+    
+    function updateQty(change) {
+      if (currentQty + change >= 1) {
+        currentQty += change;
+        document.getElementById('qty-val').textContent = currentQty;
+        updateTotalPrice();
+      }
+    }
+    
+    function updateTotalPrice() {
+      let total = basePrice;
+      
+      const portionSelected = document.querySelector('#portion-options .selected');
+      if (portionSelected) {
+        total += parseInt(portionSelected.dataset.price || 0);
+      }
+      
+      const addonsSelected = document.querySelectorAll('#addon-options .selected');
+      addonsSelected.forEach(addon => {
+        total += parseInt(addon.dataset.price || 0);
+      });
+      
+      total *= currentQty;
+      
+      if (window.AppState && window.AppState.formatRupiah) {
+        document.getElementById('btn-total-price').textContent = window.AppState.formatRupiah(total);
+      } else {
+        document.getElementById('btn-total-price').textContent = 'Rp ' + total.toLocaleString('id-ID');
+      }
+    }
+  </script>
+</body>
+</html>

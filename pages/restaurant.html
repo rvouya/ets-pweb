@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Warung Mak Sari - MABARYUK</title>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  
+    <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/style.css" rel="stylesheet" />
+  
+  <link href="../styles/restaurant.css" rel="stylesheet" />
+</head>
+<body>
+
+    <header class="top-header">
+    <div class="container-xl d-flex justify-content-between align-items-center py-2 py-md-3">
+      
+      <div class="brand-logo" style="cursor: pointer;" onclick="window.location.href='landing_page.html'">MABARYUK</div>
+      
+            <div class="flex-grow-1 mx-3 mx-md-5 position-relative d-none d-md-block" id="search-wrapper">
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input id="search-input" class="search-box w-100" placeholder="Cari di Mak Sari..." type="text" autocomplete="off" />
+      </div>
+      
+            <div class="d-flex align-items-center gap-3">
+        <button id="header-profile-trigger" class="btn btn-link text-dark p-0 d-none" aria-label="Buka profil">
+          <span class="material-symbols-outlined fs-3">account_circle</span>
+        </button>
+        <button id="header-auth-btn" class="auth-btn d-none d-md-block" type="button" onclick="window.location.href='login.html'">Login/Sign Up</button>
+        <button class="btn btn-link text-danger p-0 d-md-none">
+          <span class="material-symbols-outlined fs-2">menu</span>
+        </button>
+      </div>
+      
+    </div>
+  </header>
+
+  <main class="container-xl mx-auto px-3 pb-5">
+    
+        <div class="mt-4 mb-4">
+      <h1 id="restaurant-title" class="resto-title">Warung Mak Sari - Jakarta Selatan</h1>
+      <p id="restaurant-cuisine" class="text-secondary mb-3">Indonesian, Casual, Rice</p>
+
+      <div class="d-flex flex-wrap align-items-center gap-4 text-secondary small mb-3">
+        <div class="d-flex align-items-center gap-1">
+          <span class="material-symbols-outlined text-warning fs-5" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span id="restaurant-rating" class="text-dark fw-bold fs-6">4.8</span>
+        </div>
+        <div class="d-flex align-items-center gap-1">
+          <span class="material-symbols-outlined fs-5">schedule</span>
+          <span id="restaurant-eta-distance">45 mins • 1.2 km</span>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-4 small mb-3">
+        <span class="text-secondary">Opening Hours</span>
+        <span id="restaurant-hours" class="fw-semibold">Today 10:00-21:00</span>
+      </div>
+
+      <div class="d-flex align-items-start gap-2 small text-secondary mb-4">
+        <span class="material-symbols-outlined fs-5">info</span>
+        <p class="m-0">Biaya pemesanan senilai Rp5.500 berlaku di restoran ini.</p>
+      </div>
+
+      <div class="row g-3" style="max-width: 600px;">
+        <div class="col-12 col-sm-6">
+          <div id="date-picker-btn" class="picker-btn">
+            <div class="d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined text-secondary fs-5">calendar_today</span>
+              <span id="selected-date" class="fw-semibold small">Deliver date: Today</span>
+            </div>
+            <span class="material-symbols-outlined text-secondary">expand_more</span>
+            
+            <div id="date-dropdown" class="d-none">
+              <div class="dropdown-item-custom date-option" data-val="Today">Today</div>
+              <div class="dropdown-item-custom date-option" data-val="Tomorrow">Tomorrow</div>
+              <div class="dropdown-item-custom date-option border-0" data-val="Wednesday">Wednesday</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12 col-sm-6">
+          <div id="time-picker-btn" class="picker-btn">
+            <div class="d-flex align-items-center gap-2">
+              <span class="material-symbols-outlined text-secondary fs-5">schedule</span>
+              <span id="selected-time" class="fw-semibold small">Deliver time: Now</span>
+            </div>
+            <span class="material-symbols-outlined text-secondary">expand_more</span>
+
+            <div id="time-dropdown" class="d-none">
+              <div style="max-height: 160px; overflow-y: auto;" class="hide-scrollbar">
+                <div class="dropdown-item-custom time-option" data-val="Now">Now</div>
+                <div class="dropdown-item-custom time-option" data-val="10:00">10:00</div>
+                <div class="dropdown-item-custom time-option" data-val="11:00">11:00</div>
+                <div class="dropdown-item-custom time-option border-0" data-val="12:00">12:00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+    <div class="sticky-cat">
+    <div class="container-xl mx-auto px-3 d-flex overflow-x-auto gap-3 hide-scrollbar md-justify-center" id="category-filters">
+      <button data-filter="all" class="filter-btn filter-btn-active">All Menu</button>
+      <button data-filter="signature" class="filter-btn filter-btn-inactive">Signature Dishes</button>
+      <button data-filter="drinks" class="filter-btn filter-btn-inactive">Fresh Drinks</button>
+      <button data-filter="snacks" class="filter-btn filter-btn-inactive">Light Snacks</button>
+      <button data-filter="dessert" class="filter-btn filter-btn-inactive">Traditional Dessert</button>
+    </div>
+  </div>
+
+    <section class="container-xl mx-auto px-3 pt-4 pb-5 mb-5">
+    <div class="row g-4" id="menu-container">
+      
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Ayam Bakar Bumbu Rujak" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc-4Ea0FrxVTBfcW6s0cbx3X8NvgeG9jlcuJ4BUMQXBGC7VuWDQVuApn3tFoAvlnnIu3TeZC9tXveG778MJEibgwMZ1A950vkUWZ2UZVOA9cH3BHOAfNzwkXFJrJEMNmHnFoM8xi6Qsgqh6Rui_3ajpelvGdXEGmJNNNTYxSCc44U4lUKMgAecC9JfX0rqev5p3zaKIQw-e2ZdiPtzEJRuE_0jPnThPIR0jxj09bw8CzZGC4F5NYG03atCoF2DJaj9ID2Cwxnfskg"/>
+            <div class="bestseller-badge">Best Seller</div>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Ayam Bakar Bumbu Rujak</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Grilled chicken marinated in spicy and tangy traditional rujak spices.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 20.000</span>
+              <button data-price="20000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="drinks">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Es Teh Manis Jumbo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfXVfpvPXKOI2aJKR8_StQUjNyuFhKgBgrh8aUcDUlWudXvPCjPfhaAYXp38cYY_f8sMlDJwIKJehv1xg0dwHuy6Np1xEt6dujajXsJzu4ZjbzDlis4wZJEGpiItgRCGmvuxKhVzXU76z75J2Nu6IAS-bDdjrvRLa0q-xxt24xOMpjbUtvpM116ircsNIIozgJQ2vylij8Ahdi_Q31ZQa5uod_7jpduf41DPZzzOiLoSnkMmfhhBy-tMfOcShSMIOCAkLPmH2kqo8"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Es Teh Manis Jumbo</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Freshly brewed jasmine tea served chilled with extra portions.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 8.000</span>
+              <button data-price="8000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Nasi Goreng Special" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACfdktx0QGBxrGdug5i_QTLK3yfslQk6kld03qXfiQgQ8TVdVDhovfRqjY4x5PzDOa-o9LY7nRK-EOnfkCSBuf0LL1LwAXybr27knH_ryJa_uXY6sMOnCfDCaJubB5MbRCr6_EIQcgzMGwdleO2aVBHhllHo-oog3K-r79Dtz-jzbjqqEqRuV1Y9kS2iRlcxwQJtQUELRmrOrekF1BiXWSukCh4oQUFnd4MLR_8S3Z8Ha9jOR6hS_fWiXUNhNGemZskvgX98jYFIg"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Nasi Goreng Special</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Authentic Indonesian fried rice with egg, chicken, and crackers.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 25.000</span>
+              <button data-price="25000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="snacks">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Gorengan Platter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfAz7qAe1Xl81MOAFW7xaPP3-MHXfmibV00-1GIPvyUFDHOZnp9FNCrYov6cFKmb_pz-vwx8cs-auSCSYt9JCLlShKuE7E2Q8Bpr4TbWhAMQEivBhD3tUgn3JWhA7FgVP49QhUTO9OLNtvEharAf-Nc5ceFfPXFpiD9beWPR-Shh0X2HFPIr5xZ7OjNtwniNFev_Vu1EktNkB4OckV5rB4seYyDLFE33j5XE8W1ARcv9aFELikb9vWhuAM1ULNU-U6_9grLD7PzCs"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Gorengan Platter</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Mixed fritters: tempeh, tofu, and bakwan served with fresh chilies.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 15.000</span>
+              <button data-price="15000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="dessert">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Es Cendol Durian" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI54XRviB5y9NQh184JhR22qh6QP9dj74zaVXMcu7yXtt25vAETql0RM74cc3xQnz2WYiDLQiJitbixb5HJm1do9d4xcm2aX-SWJY1mib0wF8frTFQqSGJgGGesrJNFRjT0_iN6O8PYk4bCH6P488U1VfvY7Fx3Mnck3VBpHvZ601PlfzH_utX3mB0OxwmgM5kAsqLEqZKggOmpSb-ryt0zcd3s0YwtlQecjtZ1qqDOe-cyAleMN7WbvMhGwwFNlTRZURldwImF7E"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Es Cendol Durian</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Traditional dessert with green droplets, coconut milk, and durian.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 18.000</span>
+              <button data-price="18000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Gado-Gado Betawi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ezaa3KeK_EO7IEPKD7J3kunuslstLcLPJAhOOIpPPZzIKRevtG3zAWMZZ1-e3RFjZ0B-lAHBcmfixz15YbuTxyztmG5Fcb9XapiQECMq8Rd3JbOcavqMYQ2LcXv0BPbL5fzTX6SXTYGqAMp5H3DcEgVz5Cg7OF5hWqZXGvZPezc9A15hTUpI-Qeo7QuXLdpUZL3_puCl8I67Xl8jlMqrSiskLtCMgYL0N6koB1TqH0cq-p4LDTNMMo0DwoiTOA2gM3kRJtqE2Xo"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Gado-Gado Betawi</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Assorted steamed vegetables with authentic Jakarta peanut sauce.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 18.000</span>
+              <button data-price="18000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Soto Ayam Kuning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ1_22D6eq2PtyrukUXA1-QSV0F449IvB1nVFyVGe6_PBL3tU0zAXPZ3LH2bI4ITWOfw-THI4BrANF5QeOGAznBBVq8qdWyTh3qs6aN1sVCEl2sEOd0x3-3wLdGq9YkR4ap96sXdvAYIXLinrb7ZwMSpMmwmbmRScNqBiKzUNfdXhtqERBQK8mafaSIyAFWwjASTjoTTGZ_0HlB1ZyT_6WP4BU5TpGFKNNb00zlgbK_DdWaqxff6EH5KAdjRKvLkvByTJLzn7shkc"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Soto Ayam Kuning</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Aromatic yellow chicken soup served with vermicelli and lime.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 22.000</span>
+              <button data-price="22000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+        <div class="menu-card">
+          <div class="menu-img-wrap">
+            <img data-alt="Sate Ayam Madura" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzlO0tRrGFvvC1hTn8IBmsGrJ2uDPdiVxHuEFH8OM6fVapnk-LaCGwGYSr35Rbuxgi5Rr34nS1Ra-ufWYDPAMpQEB03UvkIIjC8bjnd11F0WqIaveLt1obzt1JY4N0CnzlCH7VYPhm-TJ8N36hmKVLK8SuCWMN32hbmaM8uyWE3NtRrRoSV_rmA24E_jGfgvBrGZMj6dXW78XbtMLWXIgaCbYTPRpvRl08MJv7tyaTDFbnFTOoHCEHVTV28jmm69qwm36PbwFVzyk"/>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <h3 class="fs-5 fw-bold mb-2">Sate Ayam Madura</h3>
+            <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">10 skewers of chicken satay with rich, sweet peanut sauce.</p>
+            <div class="d-flex align-items-center justify-content-between mt-auto">
+              <span class="fs-5 fw-bold" style="color: var(--primary);">Rp 28.000</span>
+              <button data-price="28000" class="add-to-cart-btn">
+                <span class="material-symbols-outlined fs-5">add</span> Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <div id="basket-area" class="basket-float d-none">
+    <div class="basket-inner" onclick="window.location.href='checkout.html'">
+      <div class="d-flex align-items-center gap-3">
+        <div id="basket-item-count" class="bg-white text-dark rounded-3 px-2 py-1 fw-bold small">0 Item</div>
+        <div class="fs-5 fw-bold m-0">Makan Bareng Yuk!</div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span id="basket-total-price" class="fs-5 fw-bold">Rp 0</span>
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </div>
+    </div>
+  </div>
+
+    <div id="item-detail-overlay" class="item-detail-overlay d-none">
+    <iframe id="item-detail-frame" src="about:blank" title="Item detail"></iframe>
+  </div>
+  
+    <div id="profile-overlay" class="app-overlay d-none"></div>
+  <aside id="profile-drawer" class="profile-drawer">
+    <iframe id="profile-frame" src="about:blank" title="User profile"></iframe>
+  </aside>
+
+    <nav class="mobile-nav d-flex justify-content-around d-md-none">
+    <div class="nav-item active">
+      <span class="material-symbols-outlined">explore</span>
+      <span style="font-size: 10px; font-weight: 700; margin-top: 4px;">EXPLORE</span>
+    </div>
+    <div class="nav-item">
+      <span class="material-symbols-outlined">restaurant_menu</span>
+      <span style="font-size: 10px; font-weight: 700; margin-top: 4px;">ORDERS</span>
+    </div>
+    <div class="nav-item">
+      <span class="material-symbols-outlined">favorite</span>
+      <span style="font-size: 10px; font-weight: 700; margin-top: 4px;">SAVED</span>
+    </div>
+    <div class="nav-item">
+      <span class="material-symbols-outlined">person</span>
+      <span style="font-size: 10px; font-weight: 700; margin-top: 4px;">PROFILE</span>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/app-data.js"></script>
+  <script src="../scripts/restaurant.js"></script>
+</body>
+</html>
