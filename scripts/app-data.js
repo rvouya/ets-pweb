@@ -283,7 +283,8 @@
     const defaultState = {
         user: null,
         cart: [],
-        selectedRestaurantId: RESTAURANTS[0].id
+        selectedRestaurantId: RESTAURANTS[0].id,
+        recentSearches: []
     };
 
     function parseState(raw) {
@@ -298,6 +299,9 @@
         const state = parseState(localStorage.getItem(STORAGE_KEY));
         if (!Array.isArray(state.cart)) {
             state.cart = [];
+        }
+        if (!Array.isArray(state.recentSearches)) {
+            state.recentSearches = [];
         }
         if (!state.selectedRestaurantId) {
             state.selectedRestaurantId = RESTAURANTS[0].id;
@@ -399,6 +403,26 @@
         });
     }
 
+    function getRecentSearches() {
+        return loadState().recentSearches;
+    }
+
+    function addRecentSearch(term) {
+        if (!term || term.trim() === "") return;
+        return updateState((state) => {
+            const cleanTerm = term.trim();
+            // Remove if already exists to move to front
+            state.recentSearches = state.recentSearches.filter(t => t.toLowerCase() !== cleanTerm.toLowerCase());
+            // Add to front
+            state.recentSearches.unshift(cleanTerm);
+            // Keep only top 5
+            if (state.recentSearches.length > 5) {
+                state.recentSearches.pop();
+            }
+            return state;
+        });
+    }
+
     function getCartSummary() {
         const state = loadState();
         const subtotal = state.cart.reduce((sum, entry) => sum + entry.price * entry.qty, 0);
@@ -480,6 +504,8 @@
         updateCartQty,
         clearCart,
         getCartSummary,
-        showLoginWarning
+        showLoginWarning,
+        getRecentSearches,
+        addRecentSearch
     };
 })();

@@ -6,6 +6,65 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchDropdown = document.getElementById("search-dropdown");
     const searchWrapper = document.getElementById("search-wrapper");
 
+    const renderRecentSearches = () => {
+        const container = document.getElementById("recent-search-container");
+        if (!container) return;
+        const searches = window.AppState.getRecentSearches();
+        if (searches.length === 0) {
+            container.innerHTML = '<span class="text-secondary small">Belum ada pencarian.</span>';
+            return;
+        }
+        container.innerHTML = searches.map(s => `<button class="pill-btn" style="padding: 6px 16px; border-radius: 50px; border: 1px solid var(--outline-variant); background: var(--surface-container); color: var(--on-surface-variant); cursor: pointer;">${s}</button>`).join('');
+        container.querySelectorAll('.pill-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(searchInput) {
+                    searchInput.value = btn.textContent;
+                    triggerSearch(btn.textContent);
+                }
+            });
+        });
+    };
+
+    const triggerSearch = (term) => {
+        term = term.toLowerCase().trim();
+        const cards = document.querySelectorAll("#resto-menu-container .menu-card-item");
+        cards.forEach((card) => {
+            const nameEl = card.querySelector('h3');
+            if (nameEl) {
+                const name = nameEl.textContent.toLowerCase();
+                card.style.display = name.includes(term) ? "block" : "none";
+            }
+        });
+        if (term) {
+            window.AppState.addRecentSearch(term);
+            renderRecentSearches();
+        }
+        if(searchWrapper) searchWrapper.classList.remove("open");
+        if(searchDropdown) searchDropdown.classList.add("d-none");
+    };
+
+    if(searchInput) {
+        searchInput.addEventListener("focus", () => {
+            if(searchDropdown) searchDropdown.classList.remove("d-none");
+            if(searchWrapper) searchWrapper.classList.add("open");
+            renderRecentSearches();
+        });
+        
+        searchInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                triggerSearch(searchInput.value);
+                searchInput.blur();
+            }
+        });
+    }
+
+    document.addEventListener("click", (event) => {
+        if (searchWrapper && !searchWrapper.contains(event.target)) {
+            if(searchDropdown) searchDropdown.classList.add("d-none");
+            if(searchWrapper) searchWrapper.classList.remove("open");
+        }
+    });
+
     const restaurantTitle = document.getElementById("restaurant-title");
     const restaurantCuisine = document.getElementById("restaurant-cuisine");
     const restaurantRating = document.getElementById("restaurant-rating");
@@ -43,16 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const state = window.AppState.loadState();
         if (state.user) {
             if(authButton) {
-                authButton.classList.add("d-none");
+                authButton.style.setProperty("display", "none", "important");
                 authButton.classList.remove("d-md-block");
             }
-            if(profileTrigger) profileTrigger.classList.remove("d-none");
+            if(profileTrigger) {
+                profileTrigger.classList.remove("d-none");
+                profileTrigger.style.setProperty("display", "block", "important");
+            }
         } else {
             if(authButton) {
-                authButton.classList.remove("d-none");
+                authButton.style.removeProperty("display");
                 authButton.classList.add("d-md-block");
             }
-            if(profileTrigger) profileTrigger.classList.add("d-none");
+            if(profileTrigger) {
+                profileTrigger.classList.add("d-none");
+                profileTrigger.style.removeProperty("display");
+            }
         }
     };
 

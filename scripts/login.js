@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const params = new URLSearchParams(window.location.search);
-        const redirect = params.get("redirect") || "../landing_page.html";
+        const redirect = params.get("redirect") || "landing_page.html";
         window.location.href = redirect;
     });
 });

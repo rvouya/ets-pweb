@@ -11,14 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const syncAuthUI = () => {
         const state = window.AppState.loadState();
         if (state.user) {
-            authButton.classList.add("d-none");
+            authButton.style.setProperty("display", "none", "important");
             authButton.classList.remove("d-md-block");
             profileTrigger.classList.remove("d-none");
+            profileTrigger.style.setProperty("display", "block", "important");
             profileTrigger.setAttribute("title", state.user.name);
         } else {
-            authButton.classList.remove("d-none");
+            authButton.style.removeProperty("display");
             authButton.classList.add("d-md-block");
             profileTrigger.classList.add("d-none");
+            profileTrigger.style.removeProperty("display");
             closeProfileDrawer();
         }
     };
@@ -61,15 +63,62 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchDropdown = document.getElementById("search-dropdown");
     const searchWrapper = document.getElementById("search-wrapper");
 
-    searchInput.addEventListener("focus", () => searchDropdown.classList.remove("d-none"));
+    searchInput.addEventListener("focus", () => {
+        searchDropdown.classList.remove("d-none");
+        searchWrapper.classList.add("open");
+        renderRecentSearches();
+    });
+    
     document.addEventListener("click", (event) => {
         if (!searchWrapper.contains(event.target)) {
             searchDropdown.classList.add("d-none");
+            searchWrapper.classList.remove("open");
         }
     });
 
     const catFilterBtns = document.querySelectorAll(".cat-filter-btn");
-    const menuCards = document.querySelectorAll("#menu-cards-container .food-card");
+    const menuItems = document.querySelectorAll("#menu-cards-container .menu-card-item");
+
+    const renderRecentSearches = () => {
+        const container = document.getElementById("recent-search-container");
+        if (!container) return;
+        const searches = window.AppState.getRecentSearches();
+        if (searches.length === 0) {
+            container.innerHTML = '<span class="text-secondary small">Belum ada pencarian.</span>';
+            return;
+        }
+        container.innerHTML = searches.map(s => `<button class="pill-btn">${s}</button>`).join('');
+        container.querySelectorAll('.pill-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                searchInput.value = btn.textContent;
+                triggerSearch(btn.textContent);
+            });
+        });
+    };
+
+    const triggerSearch = (term) => {
+        term = term.toLowerCase().trim();
+        menuItems.forEach((item) => {
+            const nameEl = item.querySelector('h3');
+            if (nameEl) {
+                const name = nameEl.textContent.toLowerCase();
+                item.style.display = name.includes(term) ? "block" : "none";
+            }
+        });
+        if (term) {
+            window.AppState.addRecentSearch(term);
+            renderRecentSearches();
+        }
+        searchDropdown.classList.add("d-none");
+        searchWrapper.classList.remove("open");
+    };
+
+    searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            triggerSearch(searchInput.value);
+            searchInput.blur();
+        }
+    });
 
     catFilterBtns.forEach((button) => {
         button.addEventListener("click", () => {
@@ -77,25 +126,28 @@ document.addEventListener("DOMContentLoaded", () => {
             button.classList.add("is-active");
 
             const filter = button.getAttribute("data-filter");
-            menuCards.forEach((card) => {
-                const categories = card.getAttribute("data-category").split(" ");
-                card.style.display = filter === "all" || categories.includes(filter) ? "block" : "none";
+            menuItems.forEach((item) => {
+                const categories = item.getAttribute("data-category").split(" ");
+                item.style.display = filter === "all" || categories.includes(filter) ? "block" : "none";
             });
         });
     });
 
     const restaurants = window.AppState.getRestaurants();
-    menuCards.forEach((card, index) => {
+    menuItems.forEach((item, index) => {
         const restaurant = restaurants[index];
         if (!restaurant) {
             return;
         }
 
-        card.dataset.restaurantId = restaurant.id;
-        card.addEventListener("click", () => {
-            window.AppState.setSelectedRestaurant(restaurant.id);
-            window.location.href = `restaurant.html?restaurant=${restaurant.id}`;
-        });
+        const foodCard = item.querySelector(".food-card");
+        if (foodCard) {
+            foodCard.dataset.restaurantId = restaurant.id;
+            foodCard.addEventListener("click", () => {
+                window.AppState.setSelectedRestaurant(restaurant.id);
+                window.location.href = `restaurant.html?restaurant=${restaurant.id}`;
+            });
+        }
     });
 
     const faqButtons = document.querySelectorAll(".faq-button");
@@ -108,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const syncBasket = () => {
+        if (!basketArea || !basketItemCount || !basketTotalPrice) return;
         const summary = window.AppState.getCartSummary();
 
         if (summary.totalItems < 1) {
@@ -120,14 +173,16 @@ document.addEventListener("DOMContentLoaded", () => {
         basketTotalPrice.textContent = window.AppState.formatRupiah(summary.subtotal);
     };
 
-    basketArea.addEventListener("click", () => {
-        const state = window.AppState.loadState();
-        if (!state.user) {
-            window.AppState.showLoginWarning("checkout.html");
-            return;
-        }
-        window.location.href = "checkout.html";
-    });
+    if (basketArea) {
+        basketArea.addEventListener("click", () => {
+            const state = window.AppState.loadState();
+            if (!state.user) {
+                window.AppState.showLoginWarning("checkout.html");
+                return;
+            }
+            window.location.href = "checkout.html";
+        });
+    }
 
     syncAuthUI();
     syncBasket();

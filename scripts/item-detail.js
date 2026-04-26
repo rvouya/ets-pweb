@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     addBtn.addEventListener("click", () => {
-        // the currentQty variable is from inline script in item_detail.html
-        let finalQty = window.currentQty || 1;
+        // Read quantity safely from the DOM instead of relying on global variables
+        const qtyEl = document.getElementById('qty-val');
+        let finalQty = qtyEl ? parseInt(qtyEl.textContent) : 1;
         let finalNotes = notesEl ? notesEl.value.trim() : "";
         
         let addonsSelected = [];

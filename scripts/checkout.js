@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             ${item.options && item.options.length > 0 ? `<p class="body-md text-on-surface-variant mb-0">${item.options.join(', ')}</p>` : ''}
                         </div>
                         <div class="text-end">
-                            <p class="price-text text-on-surface mb-1">${window.AppState.formatRupiah(item.price)}</p>
-                            <p class="label-bold text-on-surface-variant mb-0">${item.qty}x</p>
+                            <p class="price-text text-on-surface mb-1">${window.AppState.formatRupiah(item.price * item.qty)}</p>
+                            <p class="label-bold text-on-surface-variant mb-0">${item.qty} x ${window.AppState.formatRupiah(item.price)}</p>
                         </div>
                     </div>
                 `;
