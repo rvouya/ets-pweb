@@ -5,6 +5,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="styles/base.css" rel="stylesheet"/>
+<link href="styles/style.css" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
 tailwind.config = {
@@ -175,12 +177,10 @@ Kategori Populer
 </div>
 
 <div class="flex items-center gap-6">
-<div class="flex text-red-600 dark:text-red-500">
-<button aria-label="shopping_cart" class="hover:text-red-500 dark:hover:text-red-300 transition-all duration-200 active:scale-95">
-<span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+<button id="header-profile-trigger" class="hidden" type="button" aria-label="Buka profil">
+<span class="material-symbols-outlined">account_circle</span>
 </button>
-</div>
-<button class="hidden md:block px-6 py-2 rounded-full border-2 border-primary-container text-primary-container font-label-bold text-label-bold hover:bg-primary-container hover:text-white transition-colors">
+<button id="header-auth-btn" class="hidden md:block px-6 py-2 rounded-full border-2 border-primary-container text-primary-container font-label-bold text-label-bold hover:bg-primary-container hover:text-white transition-colors" type="button">
 Login/Sign Up
 </button>
 <button class="md:hidden text-red-600 dark:text-red-500 transition-all duration-200 active:scale-95">
@@ -195,25 +195,23 @@ Login/Sign Up
     
     <div class="max-w-7xl mx-auto px-5 mt-8 mb-8">
         
-        <h1 class="font-bold text-[28px] md:text-[32px] text-on-surface mb-1">Warung Mak Sari - Jakarta Selatan</h1>
-        <p class="text-on-surface-variant font-body-md text-[15px] mb-4">Indonesian, Casual, Rice</p>
+        <h1 id="restaurant-title" class="font-bold text-[28px] md:text-[32px] text-on-surface mb-1">Warung Mak Sari - Jakarta Selatan</h1>
+        <p id="restaurant-cuisine" class="text-on-surface-variant font-body-md text-[15px] mb-4">Indonesian, Casual, Rice</p>
 
         <div class="flex flex-wrap items-center gap-4 text-on-surface-variant font-body-md text-[14px] mb-4">
             <div class="flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-secondary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
-                <span class="text-on-surface font-bold text-[15px]">4.8</span>
+                <span id="restaurant-rating" class="text-on-surface font-bold text-[15px]">4.8</span>
             </div>
             <div class="flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[18px]">schedule</span>
-                <span>45 mins</span>
-                <span class="mx-1">•</span>
-                <span>1.2 km</span>
+                <span id="restaurant-eta-distance">45 mins • 1.2 km</span>
             </div>
         </div>
 
         <div class="flex items-center gap-6 font-body-md text-[14px] mb-3">
             <span class="text-on-surface-variant">Opening Hours</span>
-            <span class="text-on-surface">Today 10:00-21:00</span>
+            <span id="restaurant-hours" class="text-on-surface">Today 10:00-21:00</span>
         </div>
 
         <div class="flex items-start gap-2 font-body-md text-[14px] text-on-surface-variant mb-6">
@@ -420,6 +418,10 @@ Login/Sign Up
 </div>
 </div>
 
+<div id="item-detail-overlay" class="item-detail-overlay hidden">
+<iframe id="item-detail-frame" src="about:blank" title="Item detail"></iframe>
+</div>
+
 <nav class="fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-4 pb-6 pt-3 bg-white dark:bg-stone-950 border-t border-stone-100 dark:border-stone-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-[32px] md:hidden">
 <div class="flex flex-col items-center justify-center bg-orange-50 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 rounded-2xl px-5 py-2 active:scale-90 transition-all duration-300 ease-out">
 <span class="material-symbols-outlined">explore</span>
@@ -439,195 +441,7 @@ Login/Sign Up
 </div>
 </nav>
 
-<script>
-const searchInput = document.getElementById('search-input');
-const searchDropdown = document.getElementById('search-dropdown');
-const searchWrapper = document.getElementById('search-wrapper');
-
-// Buka dropdown apabila input diklik
-searchInput.addEventListener('focus', () => {
-searchDropdown.classList.remove('hidden');
-});
-
-// Tutup dropdown apabila klik di luar kawasan carian
-document.addEventListener('click', (event) => {
-if (!searchWrapper.contains(event.target)) {
-searchDropdown.classList.add('hidden');
-}
-});
-
-// --- Category Filtering ---
-const filterBtns = document.querySelectorAll('.filter-btn');
-const menuCards = document.querySelectorAll('.menu-card');
-
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Reset all buttons style
-        filterBtns.forEach(b => {
-            b.classList.remove('bg-primary', 'text-on-primary');
-            b.classList.add('bg-surface-container', 'text-on-surface-variant');
-        });
-
-        // Set active style to clicked button
-        btn.classList.add('bg-primary', 'text-on-primary');
-        btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
-
-        const filterValue = btn.getAttribute('data-filter');
-
-        // Show/Hide cards
-        menuCards.forEach(card => {
-            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-});
-
-// --- Basket Add to Cart Logic ---
-let totalItems = 0;
-let totalPrice = 0;
-
-const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
-const basketArea = document.getElementById('basket-area');
-const basketItemCount = document.getElementById('basket-item-count');
-const basketTotalPrice = document.getElementById('basket-total-price');
-
-// Format currency Rupiah
-const formatRupiah = (number) => {
-    return new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        minimumFractionDigits: 0
-    }).format(number);
-};
-
-const updateBasket = () => {
-    if (totalItems > 0) {
-        basketArea.classList.remove('hidden');
-        basketItemCount.textContent = totalItems + (totalItems > 1 ? ' Items' : ' Item');
-        basketTotalPrice.textContent = formatRupiah(totalPrice).replace('IDR', 'Rp');
-    } else {
-        basketArea.classList.add('hidden');
-    }
-};
-
-addToCartBtns.forEach(btn => {
-    // Save original state HTML
-    const originalHTML = `<span class="material-symbols-outlined text-[18px]">add</span> Tambah`;
-    
-    // Inisialisasi quantity tracking ke button
-    btn.setAttribute('data-qty', '0');
-    
-    btn.addEventListener('click', (e) => {
-        // Hentikan penjalaran click ke menu card
-        e.preventDefault();
-        e.stopPropagation();
-        
-        let qty = parseInt(btn.getAttribute('data-qty'));
-        const price = parseInt(btn.getAttribute('data-price'));
-
-        // Jika tombol utama ditekan (qty == 0)
-        if (qty === 0) {
-            qty++;
-            totalItems++;
-            totalPrice += price;
-            btn.setAttribute('data-qty', qty.toString());
-            
-            // Ubah gaya button menjadi hijau (menggunakan kelas tailwind) 
-            btn.classList.remove('bg-primary-container', 'text-white', 'hover:shadow-md');
-            btn.classList.add('bg-tertiary', 'text-white', 'flex', 'justify-between', 'items-center', 'w-[105px]');
-            
-            // Struktur html plus minus (menggunakan bg-white/20 agar estetik)
-            btn.innerHTML = `
-                <div class="minus-btn flex items-center justify-center w-6 h-6 bg-white/20 rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-[14px]">remove</span></div>
-                <span class="qty-display font-label-bold text-label-bold px-1">${qty}</span>
-                <div class="plus-btn flex items-center justify-center w-6 h-6 bg-white/20 rounded-full hover:bg-white/30 transition-colors"><span class="material-symbols-outlined text-[14px]">add</span></div>
-            `;
-            updateBasket();
-            return;
-        }
-
-        // Handle klik tombol minus
-        if (e.target.closest('.minus-btn')) {
-            qty--;
-            totalItems--;
-            totalPrice -= price;
-            btn.setAttribute('data-qty', qty.toString());
-            
-            if (qty > 0) {
-                // Update display angka
-                btn.querySelector('.qty-display').textContent = qty;
-            } else {
-                // Kembalikan ke tampilan "Tambah" semula
-                btn.classList.add('bg-primary-container', 'text-white', 'hover:shadow-md');
-                btn.classList.remove('bg-tertiary', 'text-white', 'flex', 'justify-between', 'items-center', 'w-[105px]');
-                btn.innerHTML = originalHTML;
-            }
-            updateBasket();
-            return;
-        }
-
-        // Handle klik tombol plus
-        if (e.target.closest('.plus-btn')) {
-            qty++;
-            totalItems++;
-            totalPrice += price;
-            btn.setAttribute('data-qty', qty.toString());
-            btn.querySelector('.qty-display').textContent = qty;
-            updateBasket();
-            return;
-        }
-    });
-});
-
-// --- Date & Time Picker Logic ---
-const dateBtn = document.getElementById('date-picker-btn');
-const dateDropdown = document.getElementById('date-dropdown');
-const dateOptions = document.querySelectorAll('.date-option');
-const selectedDateDisplay = document.getElementById('selected-date');
-
-const timeBtn = document.getElementById('time-picker-btn');
-const timeDropdown = document.getElementById('time-dropdown');
-const timeOptions = document.querySelectorAll('.time-option');
-const selectedTimeDisplay = document.getElementById('selected-time');
-
-// Buka/tutup Dropdowns
-dateBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dateDropdown.classList.toggle('hidden');
-    timeDropdown.classList.add('hidden'); // Tutup yg lain
-});
-
-timeBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    timeDropdown.classList.toggle('hidden');
-    dateDropdown.classList.add('hidden'); // Tutup yg lain
-});
-
-// Tutup dari klik layar
-document.addEventListener('click', () => {
-    dateDropdown.classList.add('hidden');
-    timeDropdown.classList.add('hidden');
-});
-
-// Pemilihan Option
-dateOptions.forEach(opt => {
-    opt.addEventListener('click', (e) => {
-        e.stopPropagation();
-        selectedDateDisplay.textContent = 'Deliver date: ' + opt.getAttribute('data-val');
-        dateDropdown.classList.add('hidden');
-    });
-});
-
-timeOptions.forEach(opt => {
-    opt.addEventListener('click', (e) => {
-        e.stopPropagation();
-        selectedTimeDisplay.textContent = 'Deliver time: ' + opt.getAttribute('data-val');
-        timeDropdown.classList.add('hidden');
-    });
-});
-</script>
+<script src="scripts/app-data.js"></script>
+<script src="scripts/restaurant.js"></script>
 </body>
 </html>

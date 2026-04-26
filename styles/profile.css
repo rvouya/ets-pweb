@@ -1,0 +1,223 @@
+body {
+    margin: 0;
+    background: #fff;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #251915;
+}
+
+.profile-panel {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 20px;
+}
+
+.profile-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #ffd9ce 0%, #ffb5a1 100%);
+    color: #ab3514;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.profile-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e0bfb7;
+    background: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.profile-close:hover {
+    background: #fff1ed;
+    transform: scale(1.08);
+}
+
+.wallet {
+    margin: 0 20px 14px;
+    border: 1px solid #e0bfb7;
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.wallet strong {
+    display: block;
+    margin-top: 2px;
+}
+
+.wallet button {
+    border: 0;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-weight: 700;
+    background: #fdbf50;
+    color: #251915;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.wallet button:hover {
+    transform: scale(1.04);
+}
+
+/* ── Cart summary section ── */
+.cart-summary {
+    margin: 0 20px 14px;
+    border: 1px solid #e0bfb7;
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff8f6;
+}
+
+.cart-title {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #251915;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.cart-empty-msg {
+    margin: 0;
+    font-size: 13px;
+    color: #7b6660;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #f0d8d2;
+    border-radius: 10px;
+    gap: 8px;
+}
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #251915;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-qty {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ff724c;
+    white-space: nowrap;
+}
+
+.cart-item-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ab3514;
+    white-space: nowrap;
+}
+
+.cart-total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e0bfb7;
+    font-size: 15px;
+    font-weight: 800;
+    color: #ab3514;
+    text-align: right;
+}
+
+.cart-total:empty {
+    display: none;
+}
+
+/* ── Navigation ── */
+.profile-nav {
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: auto;
+}
+
+.profile-link {
+    border: 0;
+    background: transparent;
+    padding: 12px 10px;
+    border-radius: 10px;
+    text-align: left;
+    font: inherit;
+    color: #251915;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.profile-link:hover {
+    background: #fff1ed;
+}
+
+/* ── Footer ── */
+.profile-footer {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1px solid #e0bfb7;
+}
+
+.logout {
+    width: 100%;
+    border: 1px solid #ffdad6;
+    background: #fff3f1;
+    color: #ba1a1a;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.logout:hover {
+    background: #ffdad6;
+    transform: scale(1.01);
+}
