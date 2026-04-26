@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     addBtn.addEventListener("click", () => {
-        // Read quantity safely from the DOM instead of relying on global variables
         const qtyEl = document.getElementById('qty-val');
         let finalQty = qtyEl ? parseInt(qtyEl.textContent) : 1;
         let finalNotes = notesEl ? notesEl.value.trim() : "";

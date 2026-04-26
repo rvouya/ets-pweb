@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const promoInput = document.getElementById('promoInput');
     const btnOrder = document.getElementById('btnOrder');
     const cutlerySwitch = document.getElementById('cutlerySwitch');
-    
+
     const itemsContainer = document.getElementById('checkout-items-container');
     const subtotalText = document.getElementById('subtotal-text');
     const subtotalPrice = document.getElementById('subtotal-price');
@@ -14,24 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let appliedDiscount = 0;
     let finalTotal = 0;
-    
+
     function renderCart() {
         if (!window.AppState) return;
-        
+
         const state = window.AppState.loadState();
         if (!state.user) {
             window.AppState.showLoginWarning("checkout.html", "landing_page.html");
             return;
         }
-        
+
         const summary = window.AppState.getCartSummary();
         const restaurantId = state.selectedRestaurant;
         const restaurant = window.AppState.getRestaurantById(restaurantId);
-        
+
         let deliveryFee = restaurant ? restaurant.deliveryFee : 0;
-        
+
         itemsContainer.innerHTML = '';
-        
+
         if (summary.cart.length === 0) {
             itemsContainer.innerHTML = '<p class="text-center body-md text-on-surface-variant my-4">Keranjang kosong</p>';
             btnOrder.disabled = true;
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             summary.cart.forEach((item, index) => {
                 const isLast = index === summary.cart.length - 1;
                 const borderClass = isLast ? '' : 'border-bottom custom-border-color';
-                
+
                 const itemHTML = `
                     <div class="d-flex gap-3 align-items-center py-3 ${borderClass}">
                         <div class="item-img-container flex-shrink-0">
@@ -63,16 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 itemsContainer.insertAdjacentHTML('beforeend', itemHTML);
             });
         }
-        
+
         const serviceFee = 4000;
         subtotalText.textContent = `Subtotal (${summary.totalItems} item)`;
         subtotalPrice.textContent = window.AppState.formatRupiah(summary.subtotal);
         deliveryFeePrice.textContent = window.AppState.formatRupiah(deliveryFee);
-        
+
         finalTotal = summary.subtotal + deliveryFee + serviceFee - appliedDiscount;
         totalPrice.textContent = window.AppState.formatRupiah(Math.max(0, finalTotal));
-        
-        if(balanceText) {
+
+        if (balanceText) {
             const currentBalance = state.user.balance || 150000;
             balanceText.textContent = `Saldo: ${window.AppState.formatRupiah(currentBalance)}`;
             if (finalTotal > currentBalance) {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     window.updateItemQty = (itemKey, change) => {
         const summary = window.AppState.getCartSummary();
         const cartItem = summary.cart.find(i => i.key === itemKey);
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCart();
         }
     };
-    
+
     renderCart();
 
     function showPromoModal(title, msg, isError = false) {
@@ -141,10 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const type = btn.getAttribute('data-promo-type');
             const summary = window.AppState.getCartSummary();
             const state = window.AppState.loadState();
-            
+
             let discount = 0;
             let promoName = "";
-            
+
             if (type === 'diskon50') {
                 if (summary.subtotal < 50000) {
                     showPromoModal('Oops!', 'Minimum transaksi Rp 50.000 untuk menggunakan promo ini.', true);
@@ -162,15 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     showPromoModal('Oops!', 'Anda harus membeli Kopi Susu Aren untuk menggunakan promo ini.', true);
                     return;
                 }
-                discount = 22000; 
+                discount = 22000;
                 promoName = "Buy 1 Get 1 Kopi";
             }
-            
+
             appliedDiscount = discount;
             discountPrice.textContent = '-' + window.AppState.formatRupiah(appliedDiscount);
             renderCart();
             showPromoModal('Asyik!', `Promo "${promoName}" berhasil diterapkan! Diskon: ${window.AppState.formatRupiah(discount)}`);
-            
+
             if (promoInput) promoInput.value = promoName.toUpperCase();
         });
     });
@@ -189,10 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btnOrder.addEventListener('click', () => {
             const state = window.AppState.loadState();
             const currentBalance = state.user.balance || 150000;
-            
+
             if (finalTotal > currentBalance) {
                 const topupModalEl = document.getElementById('topupModal');
-                if(topupModalEl) {
+                if (topupModalEl) {
                     const topupModal = new bootstrap.Modal(topupModalEl);
                     topupModal.show();
                 } else {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             console.log('memproses pesanan...');
-            
+
             const originalText = btnOrder.innerHTML;
             btnOrder.innerHTML = `
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -216,17 +216,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const successModal = new bootstrap.Modal(modalEl);
                     successModal.show();
                     window.AppState.clearCart();
-                    
+
                     const btnBackToHome = document.getElementById('btnBackToHome');
                     if (btnBackToHome) {
                         btnBackToHome.addEventListener('click', () => {
-                            window.location.href = '../landing_page.html';
+                            window.location.href = '../pages/landing_page.html';
                         });
                     }
                 } else {
                     alert('Pesanan Anda berhasil dibuat! Menunggu konfirmasi restoran.');
                     window.AppState.clearCart();
-                    window.location.href = '../landing_page.html';
+                    window.location.href = '../pages/landing_page.html';
                 }
             }, 1500);
         });

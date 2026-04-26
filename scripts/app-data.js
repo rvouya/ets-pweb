@@ -36,7 +36,7 @@
                     category: "drinks",
                     description: "Teh melati dingin dengan porsi ekstra segar.",
                     price: 8000,
-                    image: "../assets/images/es_teh_jumbo.jpg"
+                    image: "../assets/images/es_teh_manis_jumbo.jpg"
                 },
                 {
                     id: "kerupuk",
@@ -44,7 +44,7 @@
                     category: "snacks",
                     description: "Kerupuk udang gurih renyah untuk pendamping nasi goreng.",
                     price: 7000,
-                    image: "../assets/images/kerupuk_udang.jpg"
+                    image: "../assets/images/kerupuk_udang.png"
                 }
             ]
         },
