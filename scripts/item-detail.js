@@ -10,40 +10,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const descEl = document.getElementById("detail-desc");
     const imageEl = document.getElementById("detail-image");
     const priceEl = document.getElementById("detail-price");
-    const qtyEl = document.getElementById("detail-qty");
-    const notesEl = document.getElementById("detail-notes");
+    const notesEl = document.querySelector(".notes-input");
 
-    const decreaseBtn = document.getElementById("qty-decrease");
-    const increaseBtn = document.getElementById("qty-increase");
-    const closeBtn = document.getElementById("detail-close");
-    const addBtn = document.getElementById("add-order");
+    const addBtn = document.getElementById("add-to-cart-btn");
 
-    let qty = 1;
+    if (window.basePrice !== undefined) {
+        window.basePrice = item.price;
+    }
 
     const sync = () => {
         nameEl.textContent = item.name;
         descEl.textContent = item.description;
         imageEl.src = item.image;
         imageEl.alt = item.name;
-        qtyEl.textContent = String(qty);
-        priceEl.textContent = window.AppState.formatRupiah(item.price * qty);
+        priceEl.textContent = window.AppState.formatRupiah(item.price);
+        if (typeof window.updateTotalPrice === 'function') {
+            window.updateTotalPrice();
+        }
     };
 
-    decreaseBtn.addEventListener("click", () => {
-        qty = Math.max(1, qty - 1);
-        sync();
-    });
-
-    increaseBtn.addEventListener("click", () => {
-        qty += 1;
-        sync();
-    });
-
-    closeBtn.addEventListener("click", () => {
-        window.parent.postMessage({ type: "close-item-detail" }, "*");
-    });
-
     addBtn.addEventListener("click", () => {
+        // the currentQty variable is from inline script in item_detail.html
+        let finalQty = window.currentQty || 1;
+        let finalNotes = notesEl ? notesEl.value.trim() : "";
+        
+        let addonsSelected = [];
+        document.querySelectorAll('#addon-options .selected').forEach(addon => {
+            addonsSelected.push(addon.querySelector('.option-name').textContent);
+        });
+        
+        if(addonsSelected.length > 0) {
+            finalNotes += (finalNotes ? " | " : "") + "Tambahan: " + addonsSelected.join(", ");
+        }
+
+        const portionSelected = document.querySelector('#portion-options .selected');
+        let finalPrice = item.price;
+        if(portionSelected) {
+             finalPrice += parseInt(portionSelected.dataset.price || 0);
+        }
+
         window.parent.postMessage(
             {
                 type: "add-to-cart",
@@ -52,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     restaurantName: restaurant.name,
                     itemId: item.id,
                     name: item.name,
-                    price: item.price,
+                    price: finalPrice,
                     image: item.image,
-                    qty,
-                    notes: notesEl.value.trim()
+                    qty: finalQty,
+                    notes: finalNotes
                 }
             },
             "*"

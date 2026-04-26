@@ -11,24 +11,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const syncAuthUI = () => {
         const state = window.AppState.loadState();
         if (state.user) {
-            authButton.classList.add("hidden");
-            profileTrigger.classList.remove("hidden");
+            authButton.classList.add("d-none");
+            authButton.classList.remove("d-md-block");
+            profileTrigger.classList.remove("d-none");
             profileTrigger.setAttribute("title", state.user.name);
         } else {
-            authButton.classList.remove("hidden");
-            profileTrigger.classList.add("hidden");
+            authButton.classList.remove("d-none");
+            authButton.classList.add("d-md-block");
+            profileTrigger.classList.add("d-none");
             closeProfileDrawer();
         }
     };
 
     const openProfileDrawer = () => {
-        profileOverlay.classList.remove("hidden");
+        profileOverlay.classList.remove("d-none");
         profileDrawer.classList.add("is-open");
         profileFrame.setAttribute("src", "user_profile.html");
     };
 
     const closeProfileDrawer = () => {
-        profileOverlay.classList.add("hidden");
+        profileOverlay.classList.add("d-none");
         profileDrawer.classList.remove("is-open");
     };
 
@@ -59,15 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchDropdown = document.getElementById("search-dropdown");
     const searchWrapper = document.getElementById("search-wrapper");
 
-    searchInput.addEventListener("focus", () => searchDropdown.classList.remove("hidden"));
+    searchInput.addEventListener("focus", () => searchDropdown.classList.remove("d-none"));
     document.addEventListener("click", (event) => {
         if (!searchWrapper.contains(event.target)) {
-            searchDropdown.classList.add("hidden");
+            searchDropdown.classList.add("d-none");
         }
     });
 
     const catFilterBtns = document.querySelectorAll(".cat-filter-btn");
-    const menuCards = document.querySelectorAll("#menu-cards-container .menu-card");
+    const menuCards = document.querySelectorAll("#menu-cards-container .food-card");
 
     catFilterBtns.forEach((button) => {
         button.addEventListener("click", () => {
@@ -109,16 +111,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const summary = window.AppState.getCartSummary();
 
         if (summary.totalItems < 1) {
-            basketArea.classList.add("hidden");
+            basketArea.classList.add("d-none");
             return;
         }
 
-        basketArea.classList.remove("hidden");
+        basketArea.classList.remove("d-none");
         basketItemCount.textContent = `${summary.totalItems} Item`;
         basketTotalPrice.textContent = window.AppState.formatRupiah(summary.subtotal);
     };
 
     basketArea.addEventListener("click", () => {
+        const state = window.AppState.loadState();
+        if (!state.user) {
+            window.AppState.showLoginWarning("checkout.html");
+            return;
+        }
         window.location.href = "checkout.html";
     });
 

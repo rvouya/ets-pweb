@@ -17,8 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCart() {
         if (!window.AppState) return;
         
-        const summary = window.AppState.getCartSummary();
         const state = window.AppState.loadState();
+        if (!state.user) {
+            window.AppState.showLoginWarning("checkout.html", "landing_page.html");
+            return;
+        }
+        
+        const summary = window.AppState.getCartSummary();
         const restaurantId = state.selectedRestaurant;
         const restaurant = window.AppState.getRestaurantById(restaurantId);
         

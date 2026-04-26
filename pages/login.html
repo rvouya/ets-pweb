@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="phone">Nomor HP</label>
-                <input id="phone" type="tel" placeholder="81234567890" required />
+                <input id="phone" type="tel" placeholder="81234567890" pattern="[0-9]{10,13}" title="Nomor HP harus berupa 10 hingga 13 digit angka" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required />
             </div>
             <button class="btn btn-primary" type="submit">Masuk</button>
         </form>

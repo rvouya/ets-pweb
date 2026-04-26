@@ -28,6 +28,22 @@
             <div class="flex-grow-1 mx-3 mx-md-5 position-relative d-none d-md-block" id="search-wrapper">
         <span class="material-symbols-outlined search-icon">search</span>
         <input id="search-input" class="search-box w-100" placeholder="Cari di Mak Sari..." type="text" autocomplete="off" />
+        
+        <div id="search-dropdown" class="search-dropdown d-none" style="position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top: 8px; z-index: 100; overflow: hidden; border: 1px solid rgba(224, 191, 183, 0.3);">
+          <div class="p-4 p-md-4 d-flex flex-column gap-4">
+            <section class="d-flex flex-column gap-3">
+              <h2 class="fs-6 fw-bold d-flex align-items-center gap-2 m-0">
+                <span class="material-symbols-outlined fs-5" style="color: var(--primary-container);">history</span>
+                Pencarian Terakhir
+              </h2>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="filter-btn filter-btn-inactive" style="font-size: 12px; padding: 6px 12px;">Ayam Bakar</button>
+                <button class="filter-btn filter-btn-inactive" style="font-size: 12px; padding: 6px 12px;">Es Teh Jumbo</button>
+                <button class="filter-btn filter-btn-inactive" style="font-size: 12px; padding: 6px 12px;">Nasi Goreng</button>
+              </div>
+            </section>
+          </div>
+        </div>
       </div>
       
             <div class="d-flex align-items-center gap-3">
@@ -120,9 +136,9 @@
   </div>
 
     <section class="container-xl mx-auto px-3 pt-4 pb-5 mb-5">
-    <div class="row g-4" id="menu-container">
+    <div class="row g-4" id="resto-menu-container">
       
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="signature">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Ayam Bakar Bumbu Rujak" src="../assets/images/ayam_bakar_bumbu_rujak.jpg"/>
@@ -141,7 +157,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="drinks">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="drinks">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Es Teh Manis Jumbo" src="../assets/images/es_teh_manis_jumbo.jpg"/>
@@ -159,7 +175,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="signature">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Nasi Goreng Special" src="../assets/images/nasi_goreng_special.jpg"/>
@@ -177,7 +193,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="snacks">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="snacks">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Gorengan Platter" src="../assets/images/gorengan_platter.jpg"/>
@@ -195,7 +211,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="dessert">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="dessert">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Es Cendol Durian" src="../assets/images/es_cendol_durian.jpg"/>
@@ -213,7 +229,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="signature">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Gado-Gado Betawi" src="../assets/images/gado_gado_betawi.jpg"/>
@@ -231,7 +247,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="signature">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Soto Ayam Kuning" src="../assets/images/soto_ayam_kuning.jpg"/>
@@ -249,7 +265,7 @@
         </div>
       </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item" data-category="signature">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item" data-category="signature">
         <div class="menu-card">
           <div class="menu-img-wrap">
             <img data-alt="Sate Ayam Madura" src="../assets/images/sate_ayam_madura.jpg"/>

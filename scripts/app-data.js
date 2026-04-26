@@ -411,6 +411,59 @@
         };
     }
 
+    function showLoginWarning(redirectUrl = "checkout.html", onCancelUrl = null) {
+        let modalEl = document.getElementById("loginWarningModal");
+        if (!modalEl) {
+            const modalHtml = `
+            <div class="modal fade" id="loginWarningModal" tabindex="-1" aria-labelledby="loginWarningLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 rounded-4 shadow-lg p-3 text-center" style="color: #251915;">
+                  <div class="modal-body d-flex flex-column align-items-center gap-3">
+                    <span class="material-symbols-outlined" style="font-size: 64px; font-variation-settings: 'FILL' 1; color: #ff724c;">lock</span>
+                    <h3 class="fs-4 fw-bold mb-1" id="loginWarningLabel">Ups! Belum Login Nih</h3>
+                    <p class="text-secondary mb-0">Kamu harus login terlebih dahulu ya untuk bisa melakukan pesanan dan melanjutkan.</p>
+                    <div class="d-flex gap-2 w-100 mt-3">
+                      <button type="button" class="btn flex-grow-1" id="loginWarningCancelBtn" style="background: #ffe9e4; color: #58413b; border-radius: 50px; font-weight: 700;" data-bs-dismiss="modal">Nanti Saja</button>
+                      <button type="button" class="btn flex-grow-1 text-white" id="loginWarningConfirmBtn" style="background: #ff724c; border-radius: 50px; font-weight: 700;">Login Sekarang</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            modalEl = document.getElementById("loginWarningModal");
+        }
+        
+        const confirmBtn = document.getElementById("loginWarningConfirmBtn");
+        const cancelBtn = document.getElementById("loginWarningCancelBtn");
+        
+        // Reset listeners
+        const newConfirmBtn = confirmBtn.cloneNode(true);
+        confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+        newConfirmBtn.addEventListener("click", () => {
+            window.location.href = 'login.html?redirect=' + encodeURIComponent(redirectUrl);
+        });
+
+        const newCancelBtn = cancelBtn.cloneNode(true);
+        cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+        newCancelBtn.addEventListener("click", () => {
+            if (onCancelUrl) {
+                window.location.href = onCancelUrl;
+            }
+        });
+        
+        // Handle modal hide event if they click outside
+        if (onCancelUrl) {
+            modalEl.addEventListener('hidden.bs.modal', function onHidden() {
+                window.location.href = onCancelUrl;
+                modalEl.removeEventListener('hidden.bs.modal', onHidden);
+            });
+        }
+
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+    }
+
     window.AppState = {
         STORAGE_KEY,
         loadState,
@@ -426,6 +479,7 @@
         addToCart,
         updateCartQty,
         clearCart,
-        getCartSummary
+        getCartSummary,
+        showLoginWarning
     };
 })();

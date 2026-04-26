@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const restaurantEtaDistance = document.getElementById("restaurant-eta-distance");
     const restaurantHours = document.getElementById("restaurant-hours");
 
-    const menuContainer = document.getElementById("menu-container");
+    const menuContainer = document.getElementById("resto-menu-container");
     const basketArea = document.getElementById("basket-area");
     const basketItemCount = document.getElementById("basket-item-count");
     const basketTotalPrice = document.getElementById("basket-total-price");
@@ -42,7 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const syncAuthUI = () => {
         const state = window.AppState.loadState();
         if (state.user) {
-            if(authButton) authButton.classList.add("d-none");
+            if(authButton) {
+                authButton.classList.add("d-none");
+                authButton.classList.remove("d-md-block");
+            }
             if(profileTrigger) profileTrigger.classList.remove("d-none");
         } else {
             if(authButton) {
@@ -142,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menuContainer.innerHTML = "";
         items.forEach((item, index) => {
             const col = document.createElement("div");
-            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item";
+            col.className = "col-12 col-sm-6 col-md-6 col-lg-4 menu-card-item";
             col.dataset.category = item.category;
             
             const isBestSeller = item.category === "signature" && index === 0;
@@ -239,6 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     basketArea.addEventListener("click", () => {
+        const state = window.AppState.loadState();
+        if (!state.user) {
+            window.AppState.showLoginWarning("checkout.html");
+            return;
+        }
         window.location.href = "checkout.html";
     });
 
