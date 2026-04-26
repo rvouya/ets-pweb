@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnOrder = document.getElementById('btnOrder');
     const cutlerySwitch = document.getElementById('cutlerySwitch');
     
-    // elements for rendering cart
     const itemsContainer = document.getElementById('checkout-items-container');
     const subtotalText = document.getElementById('subtotal-text');
     const subtotalPrice = document.getElementById('subtotal-price');
@@ -42,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isLast = index === summary.cart.length - 1;
                 const borderClass = isLast ? '' : 'border-bottom custom-border-color';
                 
-                // create item element
                 const itemHTML = `
                     <div class="d-flex gap-3 align-items-center py-3 ${borderClass}">
                         <div class="item-img-container flex-shrink-0">
@@ -66,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // update summary
         const serviceFee = 4000;
         subtotalText.textContent = `Subtotal (${summary.totalItems} item)`;
         subtotalPrice.textContent = window.AppState.formatRupiah(summary.subtotal);
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         finalTotal = summary.subtotal + deliveryFee + serviceFee - appliedDiscount;
         totalPrice.textContent = window.AppState.formatRupiah(Math.max(0, finalTotal));
         
-        // Show balance
         if(balanceText) {
             const currentBalance = state.user.balance || 150000;
             balanceText.textContent = `Saldo: ${window.AppState.formatRupiah(currentBalance)}`;
@@ -117,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // logika kode promo
     if (btnPromo && promoInput) {
         btnPromo.addEventListener('click', () => {
             const code = promoInput.value.trim().toUpperCase();
@@ -140,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // logika promo buttons (tiket)
     const promoBtns = document.querySelectorAll('.promo-ticket-btn');
     promoBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -168,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showPromoModal('Oops!', 'Anda harus membeli Kopi Susu Aren untuk menggunakan promo ini.', true);
                     return;
                 }
-                discount = 22000; // Harga Kopi Susu Aren
+                discount = 22000; 
                 promoName = "Buy 1 Get 1 Kopi";
             }
             
@@ -177,12 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCart();
             showPromoModal('Asyik!', `Promo "${promoName}" berhasil diterapkan! Diskon: ${window.AppState.formatRupiah(discount)}`);
             
-            // Set input value just for visual feedback
             if (promoInput) promoInput.value = promoName.toUpperCase();
         });
     });
 
-    // logika opsi alat makan
     if (cutlerySwitch) {
         cutlerySwitch.addEventListener('change', (e) => {
             if (e.target.checked) {
@@ -193,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // logika pemesanan
     if (btnOrder) {
         btnOrder.addEventListener('click', () => {
             const state = window.AppState.loadState();
@@ -212,7 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('memproses pesanan...');
             
-            // tambahkan status memuat
             const originalText = btnOrder.innerHTML;
             btnOrder.innerHTML = `
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -220,9 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             btnOrder.disabled = true;
 
-            // simulasi penundaan
             setTimeout(() => {
-                // Show Bootstrap modal
                 const modalEl = document.getElementById('successModal');
                 if (modalEl) {
                     const successModal = new bootstrap.Modal(modalEl);

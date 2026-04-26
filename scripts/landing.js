@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
         menuContainer.innerHTML = "";
         
         restaurants.forEach(resto => {
-            // Mapping standard categories from data to button filters
             let catClass = "nasi";
             if (resto.cuisine.toLowerCase().includes("noodle") || resto.cuisine.toLowerCase().includes("bakso")) catClass = "mie_bakso";
             if (resto.cuisine.toLowerCase().includes("ayam")) catClass = "ayam";
@@ -114,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
             menuContainer.insertAdjacentHTML("beforeend", html);
         });
 
-        // Re-attach listeners
         const cards = document.querySelectorAll(".food-card");
         cards.forEach(card => {
             card.addEventListener("click", () => {

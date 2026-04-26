@@ -44,7 +44,7 @@
                     category: "snacks",
                     description: "Kerupuk udang gurih renyah untuk pendamping nasi goreng.",
                     price: 7000,
-                    image: "https://images.unsplash.com/photo-1620374645314-352f7f25ec6f?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/kerupuk_udang.jpg"
                 }
             ]
         },
@@ -82,7 +82,7 @@
                     category: "drinks",
                     description: "Jeruk peras segar tanpa pengawet.",
                     price: 10000,
-                    image: "https://images.unsplash.com/photo-1551024709-8f23befc6cf7?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/jeruk_peras.png"
                 },
                 {
                     id: "pangsit",
@@ -90,7 +90,7 @@
                     category: "snacks",
                     description: "Pangsit goreng isi ayam dengan saus mayo pedas.",
                     price: 15000,
-                    image: "https://images.unsplash.com/photo-1617196033258-1f9f2c2ee511?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/pangsit_goreng.png"
                 }
             ]
         },
@@ -174,7 +174,7 @@
                     category: "drinks",
                     description: "Minuman cokelat dingin untuk pendamping ayam pedas.",
                     price: 14000,
-                    image: "https://images.unsplash.com/photo-1588484695730-6e5b8e5e8c35?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/es_milo_dino.png"
                 },
                 {
                     id: "tahu-crispy",
@@ -182,7 +182,7 @@
                     category: "snacks",
                     description: "Tahu goreng crispy dengan bumbu gurih pedas.",
                     price: 13000,
-                    image: "https://images.unsplash.com/photo-1604908177073-1d6e58f8f0f7?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/tahu_crispy.png"
                 }
             ]
         },
@@ -228,7 +228,7 @@
                     category: "snacks",
                     description: "Pisang goreng dengan topping keju dan susu.",
                     price: 18000,
-                    image: "https://images.unsplash.com/photo-1606925797303-3fd61f4ebea8?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/pisang_keju.png"
                 }
             ]
         },
@@ -411,11 +411,8 @@
         if (!term || term.trim() === "") return;
         return updateState((state) => {
             const cleanTerm = term.trim();
-            // Remove if already exists to move to front
             state.recentSearches = state.recentSearches.filter(t => t.toLowerCase() !== cleanTerm.toLowerCase());
-            // Add to front
             state.recentSearches.unshift(cleanTerm);
-            // Keep only top 5
             if (state.recentSearches.length > 5) {
                 state.recentSearches.pop();
             }
@@ -461,7 +458,6 @@
         const confirmBtn = document.getElementById("loginWarningConfirmBtn");
         const cancelBtn = document.getElementById("loginWarningCancelBtn");
         
-        // Reset listeners
         const newConfirmBtn = confirmBtn.cloneNode(true);
         confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
         newConfirmBtn.addEventListener("click", () => {
@@ -476,7 +472,6 @@
             }
         });
         
-        // Handle modal hide event if they click outside
         if (onCancelUrl) {
             modalEl.addEventListener('hidden.bs.modal', function onHidden() {
                 window.location.href = onCancelUrl;
