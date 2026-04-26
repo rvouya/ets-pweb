@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MABARYUK - Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="../styles/checkout.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- baris navigasi atas -->
+    <header class="top-app-bar sticky-top py-3 px-3 px-md-4">
+        <div class="container-xl d-flex justify-content-between align-items-center px-0">
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-back d-flex align-items-center justify-content-center rounded-circle p-2" aria-label="Go back" onclick="history.back()">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+                </button>
+                <div class="brand-title">MABARYUK</div>
+            </div>
+            <div class="checkout-title">
+                Checkout
+            </div>
+        </div>
+    </header>
+
+    <!-- konten utama -->
+    <main class="flex-grow-1 container-xl py-4 py-lg-5 px-3 px-md-4">
+        <div class="row g-4 g-lg-5">
+            <!-- kolom kiri -->
+            <div class="col-12 col-lg-7 col-xl-8 d-flex flex-column gap-4 gap-lg-5">
+                
+                <!-- alamat pengiriman -->
+                <section class="custom-card p-3 p-md-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h2 class="section-title mb-0 d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                            Alamat Pengiriman
+                        </h2>
+                        <button class="btn btn-link p-0 text-primary-container text-decoration-none hover-underline label-bold">Ubah</button>
+                    </div>
+                    <div class="address-box p-3">
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="flex-grow-1">
+                                <p class="body-lg fw-bold text-on-surface mb-1">Departemen Teknik Informatika ITS</p>
+                                <p class="body-md text-on-surface-variant mb-1">Institut Teknologi Sepuluh Nopember (ITS), Jl. Raya ITS, Sukolilo, Surabaya, 60111, Indonesia</p>
+                                <p class="body-md text-on-surface-variant mb-0">tunggu di lobby ya pak </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ringkasan pesanan -->
+                <section class="custom-card p-3 p-md-4">
+                    <h2 class="section-title mb-4">Ringkasan Pesanan</h2>
+                    <div class="d-flex flex-column gap-3">
+                        <!-- item 1 -->
+                        <div class="d-flex gap-3 align-items-center py-3 border-bottom custom-border-color">
+                            <div class="item-img-container flex-shrink-0">
+                                <img src="../assets/images/nasi_goreng_spesial.png" alt="Nasi Goreng Spesial" class="w-100 h-100 object-fit-cover" />
+                            </div>
+                            <div class="flex-grow-1">
+                                <h3 class="body-lg text-on-surface mb-1">Nasi Goreng Spesial</h3>
+                                <p class="body-md text-on-surface-variant mb-0">Level Pedas: Sedang</p>
+                            </div>
+                            <div class="text-end">
+                                <p class="price-text text-on-surface mb-1">Rp 45.000</p>
+                                <p class="label-bold text-on-surface-variant mb-0">1x</p>
+                            </div>
+                        </div>
+                        <!-- item 2 -->
+                        <div class="d-flex gap-3 align-items-center py-3">
+                            <div class="item-img-container flex-shrink-0">
+                                <img src="../assets/images/es_teh_manis.png" alt="Es Teh Manis" class="w-100 h-100 object-fit-cover" />
+                            </div>
+                            <div class="flex-grow-1">
+                                <h3 class="body-lg text-on-surface mb-1">Es Teh Manis</h3>
+                            </div>
+                            <div class="text-end">
+                                <p class="price-text text-on-surface mb-1">Rp 12.000</p>
+                                <p class="label-bold text-on-surface-variant mb-0">2x</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- detail tambahan -->
+                <section class="custom-card p-3 p-md-4">
+                    <h2 class="section-title mb-4">Detail Tambahan</h2>
+                    <div class="d-flex flex-column gap-4">
+                        <!-- catatan untuk restoran -->
+                        <div>
+                            <label class="label-bold text-on-surface d-flex align-items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-on-surface-variant" style="font-size: 18px;">restaurant</span>
+                                Catatan untuk Restoran
+                            </label>
+                            <input type="text" class="form-control custom-input body-md px-3 py-2" placeholder="Contoh: Ekstra sambal, jangan pakai daun bawang" />
+                        </div>
+                        <!-- catatan untuk pengemudi -->
+                        <div>
+                            <label class="label-bold text-on-surface d-flex align-items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-on-surface-variant" style="font-size: 18px;">two_wheeler</span>
+                                Catatan untuk Driver
+                            </label>
+                            <input type="text" class="form-control custom-input body-md px-3 py-2" placeholder="Contoh: Titip di pos satpam ya pak" />
+                        </div>
+                        <!-- opsi alat makan -->
+                        <div class="cutlery-box d-flex align-items-center justify-content-between p-3 rounded-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="../assets/icons/eco_icon.svg" alt="Eco Cutlery" width="32" height="32" class="object-fit-contain" />
+                                <div>
+                                    <p class="body-lg text-on-surface mb-0">Minta Sendok &amp; Garpu</p>
+                                    <p class="body-md text-on-surface-variant mb-0" style="font-size: 12px;">Bantu kurangi sampah plastik</p>
+                                </div>
+                            </div>
+                            <div class="form-check form-switch custom-switch fs-4 mb-0">
+                                <input class="form-check-input cursor-pointer" type="checkbox" role="switch" id="cutlerySwitch" checked>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- bagian promo -->
+                <section class="custom-card p-3 p-md-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h2 class="section-title mb-0 d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">local_activity</span>
+                            Promo Untukmu
+                        </h2>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        <!-- promo 1 -->
+                        <div class="promo-ticket position-relative d-flex w-100 bg-white rounded-3 shadow-sm overflow-hidden custom-border-color border">
+                            <!-- bagian kiri tiket -->
+                            <div class="promo-stub bg-primary-container d-flex flex-column align-items-center justify-content-center p-3 position-relative z-0 text-white" style="width: 35%;">
+                                <span class="fs-1 fw-bold tracking-tight lh-1">50%</span>
+                                <span class="label-bold text-white-50 text-uppercase mt-1 tracking-widest">OFF</span>
+                            </div>
+                            
+                            <!-- lengkungan tiket -->
+                            <div class="notch notch-top position-absolute rounded-circle shadow-inner z-1"></div>
+                            <div class="notch notch-bottom position-absolute rounded-circle shadow-inner z-1"></div>
+                            
+                            <!-- garis putus-putus -->
+                            <div class="promo-divider position-absolute border-start border-2 border-dashed z-0"></div>
+                            
+                            <!-- bagian kanan tiket -->
+                            <div class="promo-body d-flex flex-column justify-content-between p-3 ps-4 bg-white w-100">
+                                <div>
+                                    <div class="d-inline-block px-2 py-1 bg-surface-variant rounded-1 label-bold text-primary mb-2" style="font-size: 10px;">Resto Pilihan</div>
+                                    <h3 class="h3-title text-on-surface mb-1">Diskon 50%</h3>
+                                    <p class="body-md text-on-surface-variant mb-0" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Maksimal potongan Rp 35.000, dengan minimum transaksi Rp 50.000.</p>
+                                </div>
+                                <div class="mt-3 d-flex justify-content-between align-items-center border-top pt-2">
+                                    <span class="label-bold text-outline d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span> 2 Hari
+                                    </span>
+                                    <button class="btn btn-primary-custom rounded-pill px-3 py-1 label-bold text-white shadow-sm" style="font-size: 12px;">Pakai</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- promo 2 -->
+                        <div class="promo-ticket position-relative d-flex w-100 bg-white rounded-3 shadow-sm overflow-hidden custom-border-color border">
+                            <!-- bagian kiri tiket -->
+                            <div class="promo-stub bg-secondary-container d-flex flex-column align-items-center justify-content-center p-3 position-relative z-0" style="width: 35%;">
+                                <img src="../assets/icons/motor_icon.svg" alt="Motor" width="36" height="36" class="mb-1" />
+                                <span class="label-bold text-on-secondary-container text-uppercase mt-1 text-center lh-sm">Free<br/>Delivery</span>
+                            </div>
+                            
+                            <!-- lengkungan tiket -->
+                            <div class="notch notch-top position-absolute rounded-circle shadow-inner z-1"></div>
+                            <div class="notch notch-bottom position-absolute rounded-circle shadow-inner z-1"></div>
+                            
+                            <!-- garis putus-putus -->
+                            <div class="promo-divider position-absolute border-start border-2 border-dashed z-0"></div>
+                            
+                            <!-- bagian kanan tiket -->
+                            <div class="promo-body d-flex flex-column justify-content-between p-3 ps-4 bg-white w-100">
+                                <div>
+                                    <div class="d-inline-block px-2 py-1 bg-surface-variant rounded-1 label-bold text-secondary mb-2" style="font-size: 10px;">Spesial Jarak Dekat</div>
+                                    <h3 class="h3-title text-on-surface mb-1">Gratis Ongkir</h3>
+                                    <p class="body-md text-on-surface-variant mb-0" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Bebas biaya antar hingga jarak 5km. Tanpa minimum pembelian.</p>
+                                </div>
+                                <div class="mt-3 d-flex justify-content-between align-items-center border-top pt-2">
+                                    <span class="label-bold text-outline d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span> 5 Jam
+                                    </span>
+                                    <button class="btn btn-outline-secondary rounded-pill px-3 py-1 label-bold border border-outline-variant shadow-sm" style="font-size: 12px; background-color: var(--surface-variant); color: var(--on-surface-variant);">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- promo 3 -->
+                        <div class="promo-ticket position-relative d-flex w-100 bg-white rounded-3 shadow-sm overflow-hidden custom-border-color border">
+                            <!-- bagian kiri tiket -->
+                            <div class="promo-stub bg-on-surface d-flex flex-column align-items-center justify-content-center p-3 position-relative z-0" style="width: 35%;">
+                                <span class="fs-1 fw-bold tracking-tight lh-1 text-surface">2x1</span>
+                                <span class="label-bold text-white-50 text-uppercase mt-1 tracking-widest">BOGO</span>
+                            </div>
+                            
+                            <!-- lengkungan tiket -->
+                            <div class="notch notch-top position-absolute rounded-circle shadow-inner z-1"></div>
+                            <div class="notch notch-bottom position-absolute rounded-circle shadow-inner z-1"></div>
+                            
+                            <!-- garis putus-putus -->
+                            <div class="promo-divider position-absolute border-start border-2 border-dashed z-0"></div>
+                            
+                            <!-- bagian kanan tiket -->
+                            <div class="promo-body d-flex flex-column justify-content-between p-3 ps-4 bg-white w-100">
+                                <div>
+                                    <div class="d-inline-block px-2 py-1 bg-surface-variant rounded-1 label-bold text-on-surface mb-2" style="font-size: 10px;">Menu Favorit</div>
+                                    <h3 class="h3-title text-on-surface mb-1">Buy 1 Get 1</h3>
+                                    <p class="body-md text-on-surface-variant mb-0" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">Beli 1 Kopi Susu Aren ukuran Large, dapatkan gratis 1 ukuran Reguler.</p>
+                                </div>
+                                <div class="mt-3 d-flex justify-content-between align-items-center border-top pt-2">
+                                    <span class="label-bold text-outline d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span> 1 Hari
+                                    </span>
+                                    <button class="btn btn-outline-secondary rounded-pill px-3 py-1 label-bold border border-outline-variant shadow-sm" style="font-size: 12px; background-color: var(--surface-variant); color: var(--on-surface-variant);">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- kolom kanan -->
+            <div class="col-12 col-lg-5 col-xl-4">
+                <div class="sticky-column d-flex flex-column gap-4 gap-lg-5">
+                    <!-- ringkasan pembayaran -->
+                    <section class="custom-card p-3 p-md-4 d-flex flex-column gap-3">
+                        <!-- metode pembayaran -->
+                        <div>
+                            <h2 class="section-title mb-3">Metode Pembayaran</h2>
+                            <div class="payment-method-box d-flex align-items-center justify-content-between p-3 rounded-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="../assets/icons/gopay_icon.svg" alt="GoPay" width="40" height="40" class="shadow-sm" style="border-radius: 8px;" />
+                                    <div>
+                                        <p class="body-lg text-on-surface mb-0">GoPay</p>
+                                        <p class="body-md text-on-surface-variant mb-0">Saldo: Rp 150.000</p>
+                                    </div>
+                                </div>
+                                <button class="btn btn-link p-0 text-primary-container"><span class="material-symbols-outlined">chevron_right</span></button>
+                            </div>
+                        </div>
+                        
+                        <hr class="custom-border-color my-1" />
+                        
+                        <!-- input promo -->
+                        <div>
+                            <h2 class="section-title mb-3">Makin Hemat!</h2>
+                            <div class="d-flex gap-2">
+                                <input type="text" class="form-control custom-input body-md px-3 py-2 text-uppercase flex-grow-1" placeholder="Punya kode promo?" id="promoInput" />
+                                <button class="btn btn-secondary-container rounded-pill px-3 label-bold shadow-sm" id="btnPromo">Pakai</button>
+                            </div>
+                        </div>
+                        
+                        <hr class="custom-border-color my-1" />
+                        
+                        <!-- detail pembayaran -->
+                        <div>
+                            <h2 class="section-title mb-3">Rincian Pembayaran</h2>
+                            <div class="d-flex flex-column gap-2 body-md text-on-surface">
+                                <div class="d-flex justify-content-between">
+                                    <span>Subtotal (3 item)</span>
+                                    <span>Rp 69.000</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Ongkos Kirim</span>
+                                    <span>Rp 15.000</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Biaya Layanan</span>
+                                    <span>Rp 4.000</span>
+                                </div>
+                                <div class="d-flex justify-content-between text-tertiary">
+                                    <span>Diskon Makanan</span>
+                                    <span>-Rp 35.000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="custom-border-color custom-border-dashed my-1" />
+                        
+                        <!-- total harga -->
+                        <div class="d-flex justify-content-between align-items-center py-2">
+                            <span class="total-title text-on-surface">Total</span>
+                            <span class="total-price text-primary-container">Rp 53.000</span>
+                        </div>
+                        
+                        <!-- tombol pesan -->
+                        <button class="btn btn-primary-custom w-100 rounded-pill py-3 mt-2 d-flex align-items-center justify-content-center gap-2 h3-title text-white" id="btnOrder">
+                            Pesan Sekarang
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                        </button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- bagian bawah -->
+    <footer class="footer bg-dark text-white py-5 mt-auto">
+        <div class="container-xl px-3 px-md-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+                <div class="d-flex flex-column align-items-center align-items-md-start gap-2">
+                    <div class="fs-4 fw-black brand-title-footer">MABARYUK</div>
+                    <p class="small text-secondary mb-0">© 2026 MABARYUK. Makan Bareng, Jadi Lebih Seru!</p>
+                </div>
+                <nav class="d-flex flex-wrap justify-content-center gap-4">
+                    <a href="#" class="footer-link text-secondary text-decoration-none">Tentang Kami</a>
+                    <a href="#" class="footer-link text-secondary text-decoration-none">Pusat Bantuan</a>
+                    <a href="#" class="footer-link text-secondary text-decoration-none">Mitra Restoran</a>
+                    <a href="#" class="footer-link text-secondary text-decoration-none">Syarat &amp; Ketentuan</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/checkout.js"></script>
+</body>
+</html>
