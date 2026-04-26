@@ -74,7 +74,7 @@
                     category: "signature",
                     description: "Bakso urat kenyal dengan kuah kaldu hangat.",
                     price: 23000,
-                    image: "../assets/images/bakso_kuah_urat.jpg"
+                    image: "../assets/images/bakso_kuah_urat.png"
                 },
                 {
                     id: "es-jeruk",
@@ -128,7 +128,7 @@
                     category: "dessert",
                     description: "Croffle butter dengan caramel sauce.",
                     price: 18000,
-                    image: "../assets/images/croffle_caramel.jpg"
+                    image: "../assets/images/croffle_caramel.png"
                 },
                 {
                     id: "choco-cookie",
@@ -204,7 +204,7 @@
                     category: "dessert",
                     description: "Martabak manis tebal dengan topping cokelat dan keju.",
                     price: 45000,
-                    image: "../assets/images/martabak_manis_cokelat_keju.jpg"
+                    image: "../assets/images/martabak_manis_coklat_keju.png"
                 },
                 {
                     id: "martabak-telor",
@@ -258,7 +258,7 @@
                     category: "snacks",
                     description: "Udang tempura crispy dengan dipping sauce.",
                     price: 38000,
-                    image: "../assets/images/ebi_tempura.jpg"
+                    image: "../assets/images/ebi_tempura.png"
                 },
                 {
                     id: "miso-soup",
