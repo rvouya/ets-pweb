@@ -12,7 +12,7 @@
             distance: "1.2 km",
             openingHours: "Today 10:00-21:00",
             deliveryFee: 10000,
-            image: "https://www.caramelandspice.com/wp-content/uploads/2022/05/072-Nasi-Goreng-Kampung-Indonesian-Fried-Rice-1-of-1.jpg",
+            image: "../assets/images/nasi_goreng_gila.jpg",
             menu: [
                 {
                     id: "ng-ayam",
@@ -20,7 +20,7 @@
                     category: "signature",
                     description: "Nasi goreng smoky dengan suwiran ayam, telur, dan acar segar.",
                     price: 28000,
-                    image: "https://www.caramelandspice.com/wp-content/uploads/2022/05/072-Nasi-Goreng-Kampung-Indonesian-Fried-Rice-1-of-1.jpg"
+                    image: "../assets/images/nasi_goreng_gila.jpg"
                 },
                 {
                     id: "ng-seafood",
@@ -28,7 +28,7 @@
                     category: "signature",
                     description: "Nasi goreng seafood dengan udang, cumi, dan sambal bawang.",
                     price: 33000,
-                    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/nasi_goreng_seafood.jpg"
                 },
                 {
                     id: "es-teh",
@@ -36,7 +36,7 @@
                     category: "drinks",
                     description: "Teh melati dingin dengan porsi ekstra segar.",
                     price: 8000,
-                    image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/es_teh_jumbo.jpg"
                 },
                 {
                     id: "kerupuk",
@@ -58,7 +58,7 @@
             distance: "1.0 km",
             openingHours: "Today 09:00-22:00",
             deliveryFee: 8000,
-            image: "https://images.bisnis.com/posts/2023/08/22/1687037/bakmi_gm_1692680061.jpg",
+            image: "../assets/images/bakmi_soerja.jpg",
             menu: [
                 {
                     id: "bakmi-ayam",
@@ -66,7 +66,7 @@
                     category: "signature",
                     description: "Mie kenyal dengan ayam jamur dan minyak bawang.",
                     price: 25000,
-                    image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/bakmi_ayam_jamur.jpg"
                 },
                 {
                     id: "bakso-kuah",
@@ -74,7 +74,7 @@
                     category: "signature",
                     description: "Bakso urat kenyal dengan kuah kaldu hangat.",
                     price: 23000,
-                    image: "https://images.unsplash.com/photo-1631452180539-96aca7d48617?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/bakso_kuah_urat.jpg"
                 },
                 {
                     id: "es-jeruk",
@@ -104,7 +104,7 @@
             distance: "0.8 km",
             openingHours: "Today 08:00-23:00",
             deliveryFee: 5000,
-            image: "https://www.kokako.co.nz/cdn/shop/files/KC_ColdCup_Clear_AW_Sep202327.jpg?v=1707442592",
+            image: "../assets/images/kopi_janji_manis.jpg",
             menu: [
                 {
                     id: "kopi-susu",
@@ -112,7 +112,7 @@
                     category: "drinks",
                     description: "Espresso blend dengan susu creamy dan gula aren.",
                     price: 22000,
-                    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/kopi_susu_aren.jpg"
                 },
                 {
                     id: "matcha-latte",
@@ -120,7 +120,7 @@
                     category: "drinks",
                     description: "Matcha premium dengan susu segar.",
                     price: 24000,
-                    image: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/matcha_latte.jpg"
                 },
                 {
                     id: "croffle",
@@ -128,7 +128,7 @@
                     category: "dessert",
                     description: "Croffle butter dengan caramel sauce.",
                     price: 18000,
-                    image: "https://images.unsplash.com/photo-1621743478914-cc8a86d7e7b5?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/croffle_caramel.jpg"
                 },
                 {
                     id: "choco-cookie",
@@ -136,7 +136,7 @@
                     category: "snacks",
                     description: "Cookie renyah dengan dark chocolate chips.",
                     price: 12000,
-                    image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/choco_chip_cookie.jpg"
                 }
             ]
         },
@@ -150,7 +150,7 @@
             distance: "0.6 km",
             openingHours: "Today 10:00-22:00",
             deliveryFee: 12000,
-            image: "https://www.dapurkobe.co.id/wp-content/uploads/kulit-ayam-crispy-geprek.jpg",
+            image: "../assets/images/ayam_geprek_original.jpg",
             menu: [
                 {
                     id: "geprek-original",
@@ -158,7 +158,7 @@
                     category: "signature",
                     description: "Ayam crispy geprek sambal bawang level bebas.",
                     price: 24000,
-                    image: "https://www.dapurkobe.co.id/wp-content/uploads/kulit-ayam-crispy-geprek.jpg"
+                    image: "../assets/images/ayam_geprek_original.jpg"
                 },
                 {
                     id: "geprek-keju",
@@ -166,7 +166,7 @@
                     category: "signature",
                     description: "Ayam geprek dengan lelehan mozzarella.",
                     price: 32000,
-                    image: "https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/ayam_geprek_mozzarella.jpg"
                 },
                 {
                     id: "es-milo",
@@ -196,7 +196,7 @@
             distance: "2.1 km",
             openingHours: "Today 16:00-00:00",
             deliveryFee: 65000,
-            image: "https://arengaindonesia.com/wp-content/uploads/2021/10/Martabak-telur-anti-gagal.jpg",
+            image: "../assets/images/martabak_telor_spesial.jpg",
             menu: [
                 {
                     id: "martabak-manis",
@@ -204,7 +204,7 @@
                     category: "dessert",
                     description: "Martabak manis tebal dengan topping cokelat dan keju.",
                     price: 45000,
-                    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/martabak_manis_cokelat_keju.jpg"
                 },
                 {
                     id: "martabak-telor",
@@ -212,7 +212,7 @@
                     category: "signature",
                     description: "Martabak telor daging sapi, daun bawang, dan telur premium.",
                     price: 42000,
-                    image: "https://arengaindonesia.com/wp-content/uploads/2021/10/Martabak-telur-anti-gagal.jpg"
+                    image: "../assets/images/martabak_telor_spesial.jpg"
                 },
                 {
                     id: "teh-tarik",
@@ -220,7 +220,7 @@
                     category: "drinks",
                     description: "Teh tarik creamy untuk teman martabak.",
                     price: 12000,
-                    image: "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/teh_tarik_hangat.jpg"
                 },
                 {
                     id: "pisang-keju",
@@ -242,7 +242,7 @@
             distance: "3.4 km",
             openingHours: "Today 11:00-22:00",
             deliveryFee: 45000,
-            image: "https://asset.kompas.com/crops/D6Ellzm3Gr-3HX4fPOnOMw7TSys=/0x0:739x493/1200x800/data/photo/2020/04/26/5ea5419d24d7e.jpg",
+            image: "../assets/images/sushi_nay.jpg",
             menu: [
                 {
                     id: "salmon-roll",
@@ -250,7 +250,7 @@
                     category: "signature",
                     description: "Roll salmon segar dengan nori premium.",
                     price: 48000,
-                    image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/salmon_roll.jpg"
                 },
                 {
                     id: "ebi-tempura",
@@ -258,7 +258,7 @@
                     category: "snacks",
                     description: "Udang tempura crispy dengan dipping sauce.",
                     price: 38000,
-                    image: "https://images.unsplash.com/photo-1607301405390-d831c242f59b?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/ebi_tempura.jpg"
                 },
                 {
                     id: "miso-soup",
@@ -266,7 +266,7 @@
                     category: "drinks",
                     description: "Sup miso hangat dengan tofu dan wakame.",
                     price: 20000,
-                    image: "https://images.unsplash.com/photo-1618841557871-b4664fbf0cb3?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/miso_soup.jpg"
                 },
                 {
                     id: "mochi",
@@ -274,7 +274,7 @@
                     category: "dessert",
                     description: "Mochi lembut dengan isian es krim.",
                     price: 26000,
-                    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80"
+                    image: "../assets/images/mochi_ice_cream.jpg"
                 }
             ]
         }

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     authButton.addEventListener("click", () => {
-        window.location.href = "pages/login.html?redirect=../landing_page.html";
+        window.location.href = "login.html?redirect=landing_page.html";
     });
 
     profileTrigger.addEventListener("click", openProfileDrawer);
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     basketArea.addEventListener("click", () => {
-        window.location.href = "pages/checkout.html";
+        window.location.href = "checkout.html";
     });
 
     syncAuthUI();

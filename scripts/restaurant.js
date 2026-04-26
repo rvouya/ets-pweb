@@ -19,30 +19,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const modalOverlay = document.getElementById("item-detail-overlay");
     const modalFrame = document.getElementById("item-detail-frame");
+    
+    const profileOverlay = document.getElementById("profile-overlay");
+    const profileDrawer = document.getElementById("profile-drawer");
 
     const params = new URLSearchParams(window.location.search);
-    const restaurantId = params.get("restaurant") || window.AppState.loadState().selectedRestaurantId;
-    const restaurant = window.AppState.getRestaurantById(restaurantId);
+    let restaurantId = params.get("restaurant") || window.AppState.loadState().selectedRestaurantId;
+    
+    // Validasi Restoran
+    const allRestos = window.AppState.getRestaurants();
+    const rawRestaurant = allRestos.find(r => r.id === restaurantId);
+    
+    if (!rawRestaurant) {
+        alert("Maaf resto belum tersedia");
+        window.location.href = "landing_page.html";
+        return; // stop execution
+    }
+    
+    const restaurant = rawRestaurant;
     window.AppState.setSelectedRestaurant(restaurant.id);
 
     const syncAuthUI = () => {
         const state = window.AppState.loadState();
         if (state.user) {
-            authButton.classList.add("hidden");
-            profileTrigger.classList.remove("hidden");
+            if(authButton) authButton.classList.add("d-none");
+            if(profileTrigger) profileTrigger.classList.remove("d-none");
         } else {
-            authButton.classList.remove("hidden");
-            profileTrigger.classList.add("hidden");
+            if(authButton) {
+                authButton.classList.remove("d-none");
+                authButton.classList.add("d-md-block");
+            }
+            if(profileTrigger) profileTrigger.classList.add("d-none");
         }
     };
 
-    authButton.addEventListener("click", () => {
-        const redirect = encodeURIComponent(`../restaurant.html?restaurant=${restaurant.id}`);
-        window.location.href = `pages/login.html?redirect=${redirect}`;
-    });
+    if(authButton) {
+        authButton.addEventListener("click", () => {
+            const redirect = encodeURIComponent(`restaurant.html?restaurant=${restaurant.id}`);
+            window.location.href = `login.html?redirect=${redirect}`;
+        });
+    }
 
-    profileTrigger.addEventListener("click", () => {
-        window.location.href = "landing_page.html?openProfile=1";
+    if(profileTrigger) {
+        profileTrigger.addEventListener("click", () => {
+            const profileFrame = document.getElementById("profile-frame");
+            if (profileFrame) profileFrame.setAttribute("src", "user_profile.html");
+            if (profileOverlay) profileOverlay.classList.remove("d-none");
+            if (profileDrawer) profileDrawer.classList.add("is-open");
+        });
+    }
+
+    if (profileOverlay) {
+        profileOverlay.addEventListener("click", () => {
+            profileOverlay.classList.add("d-none");
+            if (profileDrawer) profileDrawer.classList.remove("is-open");
+        });
+    }
+
+    window.addEventListener("message", (event) => {
+        if (!event.data || typeof event.data !== "object") return;
+
+        if (event.data.type === "close-profile") {
+            if (profileOverlay) profileOverlay.classList.add("d-none");
+            if (profileDrawer) profileDrawer.classList.remove("is-open");
+        }
+        if (event.data.type === "logout-profile") {
+            window.AppState.logout();
+            syncAuthUI();
+            if (profileOverlay) profileOverlay.classList.add("d-none");
+            if (profileDrawer) profileDrawer.classList.remove("is-open");
+        }
+        if (event.data.type === "close-item-detail") {
+            closeItemDetail();
+        }
+        if (event.data.type === "add-to-cart") {
+            window.AppState.addToCart(event.data.payload);
+            closeItemDetail();
+            syncBasket();
+            
+            const activeFilterBtn = document.querySelector(".filter-btn-active");
+            const filter = activeFilterBtn ? activeFilterBtn.dataset.filter : "all";
+            const source = restaurant.menu;
+            const filtered = filter === "all" ? source : source.filter((item) => item.category === filter);
+            renderMenu(filtered);
+        }
     });
 
     restaurantTitle.textContent = `${restaurant.name} - Jakarta Selatan`;
@@ -65,59 +125,61 @@ document.addEventListener("DOMContentLoaded", () => {
         const entry = findQuickCartEntry(itemId);
 
         if (!entry) {
-            button.classList.remove("qty-mode");
-            button.innerHTML = `<span class="btn-label">Tambahkan</span>`;
+            button.innerHTML = `<span class="material-symbols-outlined fs-5 pointer-events-none">add</span> Tambah`;
+            button.style.padding = "4px 12px";
             return;
         }
 
-        button.classList.add("qty-mode");
         button.innerHTML = `
-            <span class="qty-circle" data-role="minus">-</span>
-            <span class="qty-value">${entry.qty}</span>
-            <span class="qty-circle" data-role="plus">+</span>
+            <span class="qty-circle material-symbols-outlined" data-role="minus" style="font-size: 16px; background:#f5ddd8; color:var(--primary); border-radius:50%; padding:2px;">remove</span>
+            <span class="qty-value fw-bold text-dark mx-2 pointer-events-none" style="font-size:14px;">${entry.qty}</span>
+            <span class="qty-circle material-symbols-outlined" data-role="plus" style="font-size: 16px; background:var(--primary); color:white; border-radius:50%; padding:2px;">add</span>
         `;
+        button.style.padding = "4px 8px";
     };
 
     const renderMenu = (items) => {
         menuContainer.innerHTML = "";
+        items.forEach((item, index) => {
+            const col = document.createElement("div");
+            col.className = "col-12 col-sm-6 col-md-4 col-lg-3 menu-card-item";
+            col.dataset.category = item.category;
+            
+            const isBestSeller = item.category === "signature" && index === 0;
+            const bestSellerBadge = isBestSeller ? `<div class="bestseller-badge">Best Seller</div>` : "";
 
-        const fallbackImage =
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(
-                `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 520'><rect width='800' height='520' fill='#f5ddd8'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#ab3514' font-family='Plus Jakarta Sans, Arial' font-size='28'>Image not available</text></svg>`
-            );
-
-        items.forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "menu-card native-card";
-            card.dataset.category = item.category;
-            card.innerHTML = `
-                <div class="native-card-image-wrap">
-                    <img class="native-card-image" src="${item.image}" alt="${item.name}" />
-                </div>
-                <div class="native-card-content">
-                    <h3>${item.name}</h3>
-                    <p>${item.description}</p>
-                    <div class="native-card-footer">
-                        <span>${window.AppState.formatRupiah(item.price)}</span>
-                        <button type="button" class="add-to-cart-btn"><span class="btn-label">Tambahkan</span></button>
+            col.innerHTML = `
+                <div class="menu-card" style="cursor: pointer; height: 100%; display: flex; flex-direction: column;">
+                  <div class="menu-img-wrap">
+                    <img src="${item.image}" alt="${item.name}" />
+                    ${bestSellerBadge}
+                  </div>
+                  <div class="p-3 d-flex flex-column flex-grow-1">
+                    <h3 class="fs-5 fw-bold mb-2">${item.name}</h3>
+                    <p class="text-secondary small mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${item.description}</p>
+                    <div class="d-flex align-items-center justify-content-between mt-auto">
+                      <span class="fs-5 fw-bold" style="color: var(--primary);">${window.AppState.formatRupiah(item.price)}</span>
+                      <button data-price="${item.price}" class="add-to-cart-btn" style="cursor: pointer; background: var(--surface); color: var(--primary); border: 1px solid var(--primary); border-radius: 20px; padding: 4px 12px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                        <span class="material-symbols-outlined fs-5">add</span> Tambah
+                      </button>
                     </div>
+                  </div>
                 </div>
             `;
-
-            const imageEl = card.querySelector(".native-card-image");
-            imageEl.addEventListener("error", () => {
-                imageEl.src = fallbackImage;
+            
+            const cardInner = col.querySelector('.menu-card');
+            cardInner.addEventListener('click', (e) => {
+                if(e.target.closest('.add-to-cart-btn')) return;
+                openItemDetail(item);
             });
-
-            const addButton = card.querySelector(".add-to-cart-btn");
-            setAddButtonUI(addButton, item.id);
-
-            addButton.addEventListener("click", (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const role = event.target.getAttribute("data-role");
+            
+            const addBtn = col.querySelector('.add-to-cart-btn');
+            setAddButtonUI(addBtn, item.id);
+            
+            addBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const role = e.target.closest('[data-role]')?.getAttribute("data-role");
                 const currentEntry = findQuickCartEntry(item.id);
 
                 if (!role && !currentEntry) {
@@ -131,41 +193,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         qty: 1,
                         notes: ""
                     });
-                    setAddButtonUI(addButton, item.id);
+                    setAddButtonUI(addBtn, item.id);
                     syncBasket();
                     return;
                 }
 
-                if (!currentEntry) {
-                    return;
-                }
+                if (!currentEntry) return;
 
                 const nextQty = role === "plus" ? currentEntry.qty + 1 : currentEntry.qty - 1;
                 window.AppState.updateCartQty(currentEntry.key, nextQty);
-                setAddButtonUI(addButton, item.id);
+                setAddButtonUI(addBtn, item.id);
                 syncBasket();
             });
 
-            card.addEventListener("click", (event) => {
-                if (event.target.closest(".add-to-cart-btn")) {
-                    return;
-                }
-                event.preventDefault();
-                openItemDetail(item);
-            });
-
-            menuContainer.appendChild(card);
+            menuContainer.appendChild(col);
         });
     };
 
     const syncBasket = () => {
         const summary = window.AppState.getCartSummary();
         if (summary.totalItems < 1) {
-            basketArea.classList.add("hidden");
+            basketArea.classList.add("d-none");
             return;
         }
-
-        basketArea.classList.remove("hidden");
+        basketArea.classList.remove("d-none");
         basketItemCount.textContent = `${summary.totalItems} Item`;
         basketTotalPrice.textContent = window.AppState.formatRupiah(summary.subtotal);
     };
@@ -174,55 +225,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const url = new URL("item_detail.html", window.location.href);
         url.searchParams.set("restaurant", restaurant.id);
         url.searchParams.set("item", item.id);
-
         modalFrame.setAttribute("src", url.toString());
-        modalOverlay.classList.remove("hidden");
+        modalOverlay.classList.remove("d-none");
     };
 
     const closeItemDetail = () => {
-        modalOverlay.classList.add("hidden");
+        modalOverlay.classList.add("d-none");
         modalFrame.setAttribute("src", "about:blank");
     };
 
-    window.addEventListener("message", (event) => {
-        if (!event.data || typeof event.data !== "object") {
-            return;
-        }
-
-        if (event.data.type === "close-item-detail") {
-            closeItemDetail();
-            return;
-        }
-
-        if (event.data.type === "add-to-cart") {
-            window.AppState.addToCart(event.data.payload);
-            closeItemDetail();
-            syncBasket();
-
-            const activeFilterBtn = document.querySelector(".filter-btn.is-active") || document.querySelector(".filter-btn");
-            const activeFilter = activeFilterBtn ? activeFilterBtn.dataset.filter : "all";
-            const source = restaurant.menu;
-            const filtered = activeFilter === "all" ? source : source.filter((item) => item.category === activeFilter);
-            renderMenu(filtered);
-        }
-    });
-
     modalOverlay.addEventListener("click", (event) => {
-        if (event.target === modalOverlay) {
-            closeItemDetail();
-        }
+        if (event.target === modalOverlay) closeItemDetail();
     });
 
     basketArea.addEventListener("click", () => {
-        window.location.href = "pages/checkout.html";
+        window.location.href = "checkout.html";
     });
 
     const filterButtons = document.querySelectorAll(".filter-btn");
     filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
             const filter = button.dataset.filter;
-            filterButtons.forEach((btn) => btn.classList.remove("is-active"));
-            button.classList.add("is-active");
+            filterButtons.forEach((btn) => {
+                btn.classList.remove("filter-btn-active");
+                btn.classList.add("filter-btn-inactive");
+            });
+            button.classList.add("filter-btn-active");
+            button.classList.remove("filter-btn-inactive");
 
             const source = restaurant.menu;
             const filtered = filter === "all" ? source : source.filter((item) => item.category === filter);
@@ -230,57 +259,89 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Date & Time Picker Logic
     const dateBtn = document.getElementById("date-picker-btn");
     const dateDropdown = document.getElementById("date-dropdown");
-    const dateOptions = document.querySelectorAll(".date-option");
     const selectedDate = document.getElementById("selected-date");
 
     const timeBtn = document.getElementById("time-picker-btn");
     const timeDropdown = document.getElementById("time-dropdown");
-    const timeOptions = document.querySelectorAll(".time-option");
     const selectedTime = document.getElementById("selected-time");
+    
+    // Generate dates
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    dateDropdown.innerHTML = `
+        <div class="dropdown-item-custom date-option" data-val="Today">Today</div>
+        <div class="dropdown-item-custom date-option" data-val="Tomorrow">Tomorrow</div>
+        <div class="dropdown-item-custom date-option border-0" data-val="${days[tomorrow.getDay() + 1 > 6 ? 0 : tomorrow.getDay() + 1]}">${days[tomorrow.getDay() + 1 > 6 ? 0 : tomorrow.getDay() + 1]}</div>
+    `;
+
+    // Generate times starting from now
+    let timeHtml = `<div class="dropdown-item-custom time-option" data-val="Now">Now</div>`;
+    let currentHour = today.getHours() + 1;
+    for(let i=0; i<3; i++) {
+        let h = currentHour + i;
+        if(h > 23) h -= 24;
+        let padH = h.toString().padStart(2, '0');
+        timeHtml += `<div class="dropdown-item-custom time-option ${i==2?'border-0':''}" data-val="${padH}:00">${padH}:00</div>`;
+    }
+    
+    timeDropdown.innerHTML = `
+        <div style="max-height: 160px; overflow-y: auto;" class="hide-scrollbar">
+            ${timeHtml}
+        </div>
+    `;
+
+    const bindPickers = () => {
+        document.querySelectorAll(".date-option").forEach((option) => {
+            option.addEventListener("click", (event) => {
+                event.stopPropagation();
+                selectedDate.textContent = `Deliver date: ${option.dataset.val}`;
+                dateDropdown.classList.add("d-none");
+            });
+        });
+        document.querySelectorAll(".time-option").forEach((option) => {
+            option.addEventListener("click", (event) => {
+                event.stopPropagation();
+                selectedTime.textContent = `Deliver time: ${option.dataset.val}`;
+                timeDropdown.classList.add("d-none");
+            });
+        });
+    };
+    bindPickers();
 
     dateBtn.addEventListener("click", (event) => {
         event.stopPropagation();
-        dateDropdown.classList.toggle("hidden");
-        timeDropdown.classList.add("hidden");
+        dateDropdown.classList.toggle("d-none");
+        timeDropdown.classList.add("d-none");
     });
 
     timeBtn.addEventListener("click", (event) => {
         event.stopPropagation();
-        timeDropdown.classList.toggle("hidden");
-        dateDropdown.classList.add("hidden");
+        timeDropdown.classList.toggle("d-none");
+        dateDropdown.classList.add("d-none");
     });
 
-    dateOptions.forEach((option) => {
-        option.addEventListener("click", (event) => {
-            event.stopPropagation();
-            selectedDate.textContent = `Deliver date: ${option.dataset.val}`;
-            dateDropdown.classList.add("hidden");
+    if (searchInput) {
+        searchInput.addEventListener("focus", () => {
+            if(searchDropdown) searchDropdown.classList.remove("d-none");
         });
-    });
+    }
 
-    timeOptions.forEach((option) => {
-        option.addEventListener("click", (event) => {
-            event.stopPropagation();
-            selectedTime.textContent = `Deliver time: ${option.dataset.val}`;
-            timeDropdown.classList.add("hidden");
-        });
-    });
-
-    searchInput.addEventListener("focus", () => searchDropdown.classList.remove("hidden"));
     document.addEventListener("click", (event) => {
-        if (!searchWrapper.contains(event.target)) {
-            searchDropdown.classList.add("hidden");
+        if (searchWrapper && searchDropdown && !searchWrapper.contains(event.target)) {
+            searchDropdown.classList.add("d-none");
         }
-        dateDropdown.classList.add("hidden");
-        timeDropdown.classList.add("hidden");
+        if(dateDropdown && !dateBtn.contains(event.target)) dateDropdown.classList.add("d-none");
+        if(timeDropdown && !timeBtn.contains(event.target)) timeDropdown.classList.add("d-none");
     });
 
     renderMenu(restaurant.menu);
-    if (filterButtons[0]) {
-        filterButtons[0].classList.add("is-active");
-    }
     syncBasket();
     syncAuthUI();
 });
