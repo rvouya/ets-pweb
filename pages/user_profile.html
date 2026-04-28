@@ -20,7 +20,7 @@
   <aside class="profile-panel">
     <header class="profile-header">
       <h2>Profil Saya</h2>
-      <button class="close-btn" id="close-profile-btn" onclick="window.parent.postMessage({ type: 'close-profile' }, '*')">
+      <button class="close-btn" id="close-profile-btn">
         <span class="material-symbols-outlined">close</span>
       </button>
     </header>
@@ -39,7 +39,7 @@
       
       <div class="menu-group">
         <div class="menu-group-title">Aktivitas</div>
-        <button class="menu-item" onclick="window.parent.location.href='checkout.html'">
+        <button class="menu-item" id="profile-orders-btn">
           <span class="material-symbols-outlined menu-icon">receipt_long</span>
           <span class="menu-text">Pesanan Saya</span>
           <span class="material-symbols-outlined menu-arrow">chevron_right</span>

@@ -13,22 +13,17 @@
   <link href="../styles/item-detail.css" rel="stylesheet" />
 </head>
 <body>
-
   <div class="modal-container">
-    
     <button class="btn-close" id="close-btn" onclick="window.parent.postMessage({ type: 'close-item-detail' }, '*')">
       <span class="material-symbols-outlined fs-5">close</span>
     </button>
-    
     <img id="detail-image" class="modal-hero" src="../assets/images/ayam_bakar_bumbu_rujak.jpg" alt="Food Image">
-    
     <div class="modal-body hide-scrollbar">
       <h1 id="detail-name" class="item-title">Ayam Bakar Bumbu Rujak</h1>
       <p id="detail-desc" class="item-desc">Grilled chicken marinated in spicy and tangy traditional rujak spices. Served with fresh cucumber and sambal.</p>
       <div id="detail-price" class="item-price">Rp 20.000</div>
       
       <hr class="my-4" style="border-color: var(--outline-variant); opacity: 0.3;" />
-      
       <div class="section-title">
         <span>Pilih Ukuran Porsi</span>
         <span class="badge-required">WAJIB</span>
@@ -50,7 +45,6 @@
           <span class="material-symbols-outlined option-icon">radio_button_unchecked</span>
         </div>
       </div>
-      
       <div class="section-title">
         <span>Tambahan (Opsional)</span>
         <span class="badge-optional">Pilih s.d 3</span>
@@ -79,19 +73,15 @@
           <span class="material-symbols-outlined option-icon">check_box_outline_blank</span>
         </div>
       </div>
-      
       <div class="section-title mt-4">Catatan untuk Restoran (Opsional)</div>
       <textarea class="notes-input" rows="3" placeholder="Contoh: Jangan pakai daun bawang, sambal dipisah ya..."></textarea>
     </div>
-    
     <div class="bottom-bar">
-      <div class="d-flex gap-3 w-100">
         <div class="qty-control">
           <button class="btn-qty" id="btn-minus" onclick="updateQty(-1)"><span class="material-symbols-outlined fs-5">remove</span></button>
           <span class="qty-value" id="qty-val">1</span>
           <button class="btn-qty" id="btn-plus" onclick="updateQty(1)"><span class="material-symbols-outlined fs-5">add</span></button>
         </div>
-        
         <button class="btn-primary" id="add-to-cart-btn">
           <span>Tambah Pesanan</span>
           <span id="btn-total-price">Rp 20.000</span>

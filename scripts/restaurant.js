@@ -354,7 +354,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="dropdown-item-custom date-option border-0" data-val="${days[tomorrow.getDay() + 1 > 6 ? 0 : tomorrow.getDay() + 1]}">${days[tomorrow.getDay() + 1 > 6 ? 0 : tomorrow.getDay() + 1]}</div>
     `;
 
-    // Generate times starting from now
     let timeHtml = `<div class="dropdown-item-custom time-option" data-val="Now">Now</div>`;
     let currentHour = today.getHours() + 1;
     for(let i=0; i<3; i++) {

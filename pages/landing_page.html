@@ -26,7 +26,7 @@
       
       <div class="brand-logo">MABARYUK</div>
       
-            <div class="flex-grow-1 mx-3 mx-md-5 position-relative d-none d-md-block" id="search-wrapper">
+      <div class="flex-grow-1 mx-3 mx-md-5 position-relative d-none d-md-block" id="search-wrapper">
         <span class="material-symbols-outlined search-icon">search</span>
         <input id="search-input" class="search-box w-100" placeholder="Cari restoran atau makanan..." type="text" autocomplete="off" />
         
@@ -75,7 +75,7 @@
         </div>
       </div>
       
-            <div class="d-flex align-items-center gap-3">
+      <div class="d-flex align-items-center gap-3">
         <button id="profile-trigger" class="btn btn-link text-dark p-0 d-none" aria-label="Buka profil">
           <span class="material-symbols-outlined fs-3">account_circle</span>
         </button>
@@ -90,7 +90,7 @@
 
   <main class="container-xl mx-auto px-3 pb-5">
     
-        <section class="hero-section">
+    <section class="hero-section">
       <div class="hero-bg"></div>
       <div class="hero-img"></div>
       <div class="hero-content">
@@ -142,7 +142,7 @@
       </div>
     </section>
 
-        <section class="mt-5">
+    <section class="mt-5">
       <div class="d-flex overflow-x-auto gap-3 py-3" style="scrollbar-width: none;">
         <button data-filter="all" class="filter-btn filter-btn-active">Semua</button>
         <button data-filter="nasi" class="filter-btn filter-btn-inactive">Nasi</button>
@@ -154,10 +154,11 @@
       </div>
     </section>
 
-        <section class="mt-5">
+    <section class="mt-5">
       <h2 class="fs-3 fw-bold mb-4">Populer di Sekitarmu</h2>
       <div class="row g-4" id="menu-cards-container">
       </div>
+      
       <div id="empty-state-msg" class="text-center py-5 d-none">
         <span class="material-symbols-outlined text-secondary" style="font-size: 64px;">search_off</span>
         <h3 class="fs-4 fw-bold mt-3 text-secondary">Ups! Tidak ada restoran yang buka</h3>
@@ -234,7 +235,6 @@
   <script src="../scripts/app-data.js"></script>
   <script src="../scripts/landing.js"></script>
   <script>
-    // Search dropdown interaction
     document.getElementById('search-input')?.addEventListener('focus', function() {
       document.getElementById('search-wrapper').classList.add('open');
     });
